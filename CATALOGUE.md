@@ -58,7 +58,7 @@ Add-ons to the function modules: specifications, conditions, contexts, rules and
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| pmin-industries | The industry frameworks: add-ons to the function modules, one folder per industry | pmin-conduit, pmin-lookout, pmin-tools |
+| pmin-industries | The industry frameworks: add-ons to the function modules, one folder per industry | pmin-conduit, pmin-forge, pmin-lookout, pmin-scan, pmin-tools |
 
 ## Programs
 
@@ -66,7 +66,7 @@ Assemble the modules into something to run.
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| pmin-diskmap | Disk map program, binary mint-dm | pmin-kit, pmin-scan |
+| pmin-diskmap | Disk map program, binary mint-dm | pmin-industries, pmin-kit, pmin-scan, pmin-tools |
 | pmin-hub | One entry point that assembles the function modules | pmin-atlas, pmin-bridge, pmin-conduit, pmin-courier, pmin-depot, pmin-engine, pmin-forge, pmin-hearth, pmin-industries, pmin-kit, pmin-ledger, pmin-lens, pmin-lookout, pmin-loom, pmin-pulse, pmin-quill, pmin-tools, pmin-warden, pmin-wrap |
 
 ## Front door

@@ -125,8 +125,10 @@
     "function": 7,
     "audience": "user",
     "requires": [
+      "pmin-industries",
       "pmin-kit",
-      "pmin-scan"
+      "pmin-scan",
+      "pmin-tools"
     ],
     "status": "v0"
   },
@@ -225,7 +227,9 @@
     "audience": "user",
     "requires": [
       "pmin-conduit",
+      "pmin-forge",
       "pmin-lookout",
+      "pmin-scan",
       "pmin-tools"
     ],
     "status": "v0"
