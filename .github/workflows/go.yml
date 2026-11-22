@@ -156,9 +156,9 @@ jobs:
           import sys
 
           FAMILY = re.compile(r"^github\.com/CurtisD4q/(pmin-[a-z]+)(/v\d+)?$")
-          # STRICT turns the modules-depend-only-on-the-foundation warnings into
-          # failures. It becomes True once every module has moved over.
-          STRICT = False
+          # STRICT makes a module that requires another module fail. It was False
+          # while the modules moved over to the rule (they were warnings then).
+          STRICT = True
 
           ALLOWED = {
               "foundation": {"foundation"},

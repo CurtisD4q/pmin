@@ -70,8 +70,8 @@ Assemble the modules into something to run.
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| pmin-diskmap | Disk map program, binary mint-dm | pmin-industries, pmin-kit, pmin-scan, pmin-tools |
-| pmin-hub | One entry point that assembles the function modules | pmin-atlas, pmin-bridge, pmin-conduit, pmin-courier, pmin-depot, pmin-engine, pmin-forge, pmin-hearth, pmin-industries, pmin-kit, pmin-ledger, pmin-lens, pmin-lookout, pmin-loom, pmin-pulse, pmin-quill, pmin-tools, pmin-warden, pmin-wrap |
+| pmin-diskmap | Disk map program, binary mint-dm | pmin-contracts, pmin-industries, pmin-kit, pmin-scan |
+| pmin-hub | One entry point that assembles the function modules | pmin-atlas, pmin-bridge, pmin-conduit, pmin-contracts, pmin-courier, pmin-depot, pmin-engine, pmin-forge, pmin-formats, pmin-hearth, pmin-industries, pmin-jobhealth, pmin-kit, pmin-ledger, pmin-lens, pmin-lookout, pmin-loom, pmin-netfilter, pmin-pulse, pmin-quill, pmin-serial, pmin-tools, pmin-warden, pmin-wrap |
 
 ## Front door
 

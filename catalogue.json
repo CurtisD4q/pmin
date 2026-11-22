@@ -148,10 +148,10 @@
     "function": 7,
     "audience": "user",
     "requires": [
+      "pmin-contracts",
       "pmin-industries",
       "pmin-kit",
-      "pmin-scan",
-      "pmin-tools"
+      "pmin-scan"
     ],
     "status": "v0"
   },
@@ -233,19 +233,24 @@
       "pmin-atlas",
       "pmin-bridge",
       "pmin-conduit",
+      "pmin-contracts",
       "pmin-courier",
       "pmin-depot",
       "pmin-engine",
       "pmin-forge",
+      "pmin-formats",
       "pmin-hearth",
       "pmin-industries",
+      "pmin-jobhealth",
       "pmin-kit",
       "pmin-ledger",
       "pmin-lens",
       "pmin-lookout",
       "pmin-loom",
+      "pmin-netfilter",
       "pmin-pulse",
       "pmin-quill",
+      "pmin-serial",
       "pmin-tools",
       "pmin-warden",
       "pmin-wrap"

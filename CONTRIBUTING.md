@@ -15,7 +15,7 @@ Answer these in order; the first "yes" is the place.
 - **The foundation is layered:** 1 pmin-base, 2 pmin-sys, 3 pmin-kit, 4 pmin-tools, 5 pmin-contracts. Each layer uses only the ones below it, and gives its number as `layer` in `pmin.json`.
 - **Tests may also use engines.** A module's tests can check it against the real engine a program will plug in (Quill's tests read real files with pmin-formats). `pmin.json` lists those under `testRequires`; the module's own code still uses only the foundation. A framework's tests may also use the function modules it extends, to show its additions working in them.
 - **Programs** (`pmin-hub`, `pmin-diskmap`) may use anything but another program: they are where modules are connected.
-- The layering check in CI enforces this. [LAYERING.md](LAYERING.md) lists the modules that have not moved over yet; while it is not empty, those are warnings rather than failures.
+- The layering check in CI enforces this: a module that imports another module fails. [LAYERING.md](LAYERING.md), written by the catalogue script, lists any breach across the family; it is empty.
 - A module's extension type changes only with care: a breaking change needs the `breaking` label, as `mint-tools/action` does today.
 - Every repository has a `pmin.json`. After adding or changing one, run `python3 scripts/sync-catalogue.py` here, with the repositories cloned side by side, and commit the result.
 
