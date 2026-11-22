@@ -28,7 +28,7 @@ One per core function: the primary axis.
 | 9 | pmin-depot | Install and manage software. Add, update, and remove packages and libraries, and pin versions. | pmin-kit, pmin-tools |
 | 10 | pmin-warden | Manage users, permissions, and security. Control who can access what, and configure firewalls and network settings. | pmin-kit, pmin-netfilter, pmin-tools |
 | 11 | pmin-lookout | Monitor and troubleshoot. Read logs, diagnose faults, and test networks and system health. | pmin-kit, pmin-loom, pmin-tools |
-| 12 | pmin-bridge | Connect to other machines. Log in to remote servers, clusters, and devices over SSH or serial. | pmin-kit, pmin-tools |
+| 12 | pmin-bridge | Connect to other machines. Log in to remote servers, clusters, and devices over SSH or serial. | pmin-kit, pmin-serial, pmin-tools |
 | 13 | pmin-courier | Transfer and fetch data. Download, upload, and sync files between machines and from the web. | pmin-bridge, pmin-kit, pmin-tools |
 | 14 | pmin-ledger | Track and share code. Version your work and collaborate with Git. | pmin-kit, pmin-tools |
 | 15 | pmin-hearth | Get help and tailor your environment. Use man pages and --help, and set up aliases, prompts, and shell config. | pmin-kit, pmin-tools |
@@ -41,6 +41,7 @@ Libraries a function module builds on.
 | --- | --- | --- |
 | pmin-netfilter | Firewall and network engine used by Function 10 (pmin-warden) | pmin-tools |
 | pmin-scan | Disk engine used by Function 7 and pmin-diskmap | - |
+| pmin-serial | Serial console engine used by Function 12 (pmin-bridge) | - |
 
 ## Wrap pipeline
 

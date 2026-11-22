@@ -62,6 +62,7 @@
     "audience": "user",
     "requires": [
       "pmin-kit",
+      "pmin-serial",
       "pmin-tools"
     ],
     "status": "v0"
@@ -355,6 +356,16 @@
     "tier": "engine",
     "summary": "Disk engine used by Function 7 and pmin-diskmap",
     "function": 7,
+    "audience": "user",
+    "requires": [],
+    "status": "v0"
+  },
+  {
+    "name": "pmin-serial",
+    "module": "github.com/CurtisD4q/pmin-serial",
+    "tier": "engine",
+    "summary": "Serial console engine used by Function 12 (pmin-bridge)",
+    "function": 12,
     "audience": "user",
     "requires": [],
     "status": "v0"
