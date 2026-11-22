@@ -34,7 +34,7 @@ One per core function: the primary axis.
 | 12 | pmin-bridge | Connect to other machines. Log in to remote servers, clusters, and devices over SSH or serial. | pmin-contracts, pmin-kit, pmin-tools |
 | 13 | pmin-courier | Transfer and fetch data. Download, upload, and sync files between machines and from the web. | pmin-base, pmin-contracts, pmin-kit, pmin-tools |
 | 14 | pmin-ledger | Track and share code. Version your work and collaborate with Git. | pmin-base, pmin-contracts, pmin-kit, pmin-tools |
-| 15 | pmin-hearth | Get help and tailor your environment. Use man pages and --help, and set up aliases, prompts, and shell config. | pmin-contracts, pmin-kit, pmin-sys, pmin-tools |
+| 15 | pmin-hearth | Get help and tailor your environment. Use man pages and --help, and set up aliases, prompts, and shell config. | pmin-contracts, pmin-kit, pmin-tools |
 
 ## Engines
 
@@ -43,6 +43,7 @@ Libraries that each do one job well; a program plugs them into the function modu
 | Repository | What it is | Requires |
 | --- | --- | --- |
 | pmin-formats | Settings-file formats engine used by Function 3 (pmin-quill) | pmin-contracts, pmin-sys |
+| pmin-help | Help engine used by Function 15 (pmin-hearth): manual pages and --help | pmin-contracts, pmin-sys |
 | pmin-jobhealth | Job-health engine used by Function 5 (pmin-loom) | pmin-contracts |
 | pmin-netfilter | Firewall and network engine used by Function 10 (pmin-warden) | pmin-contracts, pmin-tools |
 | pmin-scan | Disk engine used by Function 7 and pmin-diskmap | pmin-contracts, pmin-sys |
@@ -71,7 +72,7 @@ Assemble the modules into something to run.
 | Repository | What it is | Requires |
 | --- | --- | --- |
 | pmin-diskmap | Disk map program, binary mint-dm | pmin-contracts, pmin-industries, pmin-kit, pmin-scan |
-| pmin-hub | One entry point that assembles the function modules | pmin-atlas, pmin-bridge, pmin-conduit, pmin-contracts, pmin-courier, pmin-depot, pmin-engine, pmin-forge, pmin-formats, pmin-hearth, pmin-industries, pmin-jobhealth, pmin-kit, pmin-ledger, pmin-lens, pmin-lookout, pmin-loom, pmin-netfilter, pmin-pulse, pmin-quill, pmin-serial, pmin-tools, pmin-warden, pmin-wrap |
+| pmin-hub | One entry point that assembles the function modules | pmin-atlas, pmin-bridge, pmin-conduit, pmin-contracts, pmin-courier, pmin-depot, pmin-engine, pmin-forge, pmin-formats, pmin-hearth, pmin-help, pmin-industries, pmin-jobhealth, pmin-kit, pmin-ledger, pmin-lens, pmin-lookout, pmin-loom, pmin-netfilter, pmin-pulse, pmin-quill, pmin-serial, pmin-tools, pmin-warden, pmin-wrap |
 
 ## Front door
 

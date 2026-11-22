@@ -218,8 +218,23 @@
     "requires": [
       "pmin-contracts",
       "pmin-kit",
-      "pmin-sys",
       "pmin-tools"
+    ],
+    "testRequires": [
+      "pmin-help"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "pmin-help",
+    "module": "github.com/CurtisD4q/pmin-help",
+    "tier": "engine",
+    "summary": "Help engine used by Function 15 (pmin-hearth): manual pages and --help",
+    "function": 15,
+    "audience": "user",
+    "requires": [
+      "pmin-contracts",
+      "pmin-sys"
     ],
     "status": "v0"
   },
@@ -240,6 +255,7 @@
       "pmin-forge",
       "pmin-formats",
       "pmin-hearth",
+      "pmin-help",
       "pmin-industries",
       "pmin-jobhealth",
       "pmin-kit",
