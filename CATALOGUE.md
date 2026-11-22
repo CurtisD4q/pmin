@@ -11,7 +11,7 @@ The five layers every module builds on, and the only thing a module may use: 1 p
 | pmin-base | Foundation 1: plain helpers with no dependencies | - |
 | pmin-contracts | Foundation 5: the shapes modules share, so none needs another | pmin-kit, pmin-tools |
 | pmin-kit | Screens and widgets for every program | pmin-base, pmin-sys |
-| pmin-sys | Foundation 2: reading the system and other programs' output | pmin-base |
+| pmin-sys | Foundation 2: reading the system and other programs' output | - |
 | pmin-tools | Action contract, audit, redaction and shared helpers | pmin-base, pmin-kit |
 
 ## Function modules
@@ -20,21 +20,21 @@ One per core function: the primary axis.
 
 | # | Module | Function | Requires |
 | --- | --- | --- | --- |
-| 1 | pmin-atlas | Navigate and manage files. Move, copy, rename, delete, find, and compress files and directories. | pmin-kit, pmin-tools |
-| 2 | pmin-lens | Search and read text and data. View, filter, and summarize files and logs, from a short config to a multi-gigabyte dataset. | pmin-kit, pmin-tools |
-| 3 | pmin-quill | Edit text and config. Change code, config files, and scripts without leaving the terminal. | pmin-formats, pmin-kit, pmin-tools |
-| 4 | pmin-conduit | Combine tools with pipes and redirection. Chain small commands so the output of one becomes the input of the next. | pmin-kit, pmin-tools |
-| 5 | pmin-loom | Automate with scripts and schedules. Save repeatable work as shell scripts and run it on a timer or trigger. | pmin-jobhealth, pmin-kit, pmin-tools |
-| 6 | pmin-forge | Write, build, and run code. Compile, test, and debug programs, and run scripts and jobs. | pmin-kit, pmin-tools |
-| 7 | pmin-pulse | Manage processes and resources. Start, background, pause, and kill programs, and check CPU, memory, and disk use. | pmin-kit, pmin-tools |
-| 8 | pmin-engine | Run services and containers. Start servers, databases, and containers, and manage how they run. | pmin-kit, pmin-tools |
-| 9 | pmin-depot | Install and manage software. Add, update, and remove packages and libraries, and pin versions. | pmin-kit, pmin-tools |
-| 10 | pmin-warden | Manage users, permissions, and security. Control who can access what, and configure firewalls and network settings. | pmin-kit, pmin-netfilter, pmin-tools |
-| 11 | pmin-lookout | Monitor and troubleshoot. Read logs, diagnose faults, and test networks and system health. | pmin-kit, pmin-loom, pmin-tools |
-| 12 | pmin-bridge | Connect to other machines. Log in to remote servers, clusters, and devices over SSH or serial. | pmin-kit, pmin-serial, pmin-tools |
-| 13 | pmin-courier | Transfer and fetch data. Download, upload, and sync files between machines and from the web. | pmin-bridge, pmin-kit, pmin-tools |
-| 14 | pmin-ledger | Track and share code. Version your work and collaborate with Git. | pmin-kit, pmin-tools |
-| 15 | pmin-hearth | Get help and tailor your environment. Use man pages and --help, and set up aliases, prompts, and shell config. | pmin-kit, pmin-tools |
+| 1 | pmin-atlas | Navigate and manage files. Move, copy, rename, delete, find, and compress files and directories. | pmin-base, pmin-contracts, pmin-kit, pmin-sys, pmin-tools |
+| 2 | pmin-lens | Search and read text and data. View, filter, and summarize files and logs, from a short config to a multi-gigabyte dataset. | pmin-base, pmin-contracts, pmin-kit, pmin-tools |
+| 3 | pmin-quill | Edit text and config. Change code, config files, and scripts without leaving the terminal. | pmin-base, pmin-contracts, pmin-kit, pmin-sys, pmin-tools |
+| 4 | pmin-conduit | Combine tools with pipes and redirection. Chain small commands so the output of one becomes the input of the next. | pmin-base, pmin-contracts, pmin-kit, pmin-tools |
+| 5 | pmin-loom | Automate with scripts and schedules. Save repeatable work as shell scripts and run it on a timer or trigger. | pmin-base, pmin-contracts, pmin-kit, pmin-tools |
+| 6 | pmin-forge | Write, build, and run code. Compile, test, and debug programs, and run scripts and jobs. | pmin-base, pmin-contracts, pmin-kit, pmin-tools |
+| 7 | pmin-pulse | Manage processes and resources. Start, background, pause, and kill programs, and check CPU, memory, and disk use. | pmin-base, pmin-contracts, pmin-kit, pmin-sys, pmin-tools |
+| 8 | pmin-engine | Run services and containers. Start servers, databases, and containers, and manage how they run. | pmin-contracts, pmin-kit, pmin-tools |
+| 9 | pmin-depot | Install and manage software. Add, update, and remove packages and libraries, and pin versions. | pmin-base, pmin-contracts, pmin-kit, pmin-tools |
+| 10 | pmin-warden | Manage users, permissions, and security. Control who can access what, and configure firewalls and network settings. | pmin-base, pmin-contracts, pmin-kit, pmin-tools |
+| 11 | pmin-lookout | Monitor and troubleshoot. Read logs, diagnose faults, and test networks and system health. | pmin-base, pmin-contracts, pmin-kit, pmin-sys, pmin-tools |
+| 12 | pmin-bridge | Connect to other machines. Log in to remote servers, clusters, and devices over SSH or serial. | pmin-contracts, pmin-kit, pmin-tools |
+| 13 | pmin-courier | Transfer and fetch data. Download, upload, and sync files between machines and from the web. | pmin-base, pmin-contracts, pmin-kit, pmin-tools |
+| 14 | pmin-ledger | Track and share code. Version your work and collaborate with Git. | pmin-base, pmin-contracts, pmin-kit, pmin-tools |
+| 15 | pmin-hearth | Get help and tailor your environment. Use man pages and --help, and set up aliases, prompts, and shell config. | pmin-contracts, pmin-kit, pmin-sys, pmin-tools |
 
 ## Engines
 
@@ -42,11 +42,11 @@ Libraries that each do one job well; a program plugs them into the function modu
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| pmin-formats | Settings-file formats engine used by Function 3 (pmin-quill) | - |
-| pmin-jobhealth | Job-health engine used by Function 5 (pmin-loom) | pmin-tools |
-| pmin-netfilter | Firewall and network engine used by Function 10 (pmin-warden) | pmin-tools |
-| pmin-scan | Disk engine used by Function 7 and pmin-diskmap | - |
-| pmin-serial | Serial console engine used by Function 12 (pmin-bridge) | - |
+| pmin-formats | Settings-file formats engine used by Function 3 (pmin-quill) | pmin-contracts, pmin-sys |
+| pmin-jobhealth | Job-health engine used by Function 5 (pmin-loom) | pmin-contracts |
+| pmin-netfilter | Firewall and network engine used by Function 10 (pmin-warden) | pmin-contracts, pmin-tools |
+| pmin-scan | Disk engine used by Function 7 and pmin-diskmap | pmin-contracts, pmin-sys |
+| pmin-serial | Serial console engine used by Function 12 (pmin-bridge) | pmin-contracts |
 
 ## Wrap pipeline
 
@@ -55,7 +55,7 @@ Describe any command-line program and open it as a form.
 | Repository | What it is | Requires |
 | --- | --- | --- |
 | pmin-appkit | Turns a spec into a form-based interface | pmin-kit, pmin-spec, pmin-tools |
-| pmin-gen | Generates Go source from a spec | pmin-appkit, pmin-kit, pmin-spec |
+| pmin-gen | Generates Go source from a spec | pmin-appkit, pmin-base, pmin-kit, pmin-spec |
 | pmin-spec | Describes a command-line program as data | pmin-kit, pmin-tools |
 | pmin-wrap | Opens any command-line program as a form: Store, standalone copies, HandleArgs and the ui screens, used by pmin-hub | pmin-gen, pmin-kit, pmin-spec |
 

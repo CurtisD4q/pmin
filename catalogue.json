@@ -47,7 +47,10 @@
     "title": "Navigate and manage files. Move, copy, rename, delete, find, and compress files and directories.",
     "audience": "user",
     "requires": [
+      "pmin-base",
+      "pmin-contracts",
       "pmin-kit",
+      "pmin-sys",
       "pmin-tools"
     ],
     "status": "v0"
@@ -72,9 +75,12 @@
     "title": "Connect to other machines. Log in to remote servers, clusters, and devices over SSH or serial.",
     "audience": "user",
     "requires": [
+      "pmin-contracts",
       "pmin-kit",
-      "pmin-serial",
       "pmin-tools"
+    ],
+    "testRequires": [
+      "pmin-serial"
     ],
     "status": "v0"
   },
@@ -93,6 +99,8 @@
     "title": "Combine tools with pipes and redirection. Chain small commands so the output of one becomes the input of the next.",
     "audience": "user",
     "requires": [
+      "pmin-base",
+      "pmin-contracts",
       "pmin-kit",
       "pmin-tools"
     ],
@@ -121,7 +129,8 @@
     "title": "Transfer and fetch data. Download, upload, and sync files between machines and from the web.",
     "audience": "user",
     "requires": [
-      "pmin-bridge",
+      "pmin-base",
+      "pmin-contracts",
       "pmin-kit",
       "pmin-tools"
     ],
@@ -137,6 +146,8 @@
     "title": "Install and manage software. Add, update, and remove packages and libraries, and pin versions.",
     "audience": "user",
     "requires": [
+      "pmin-base",
+      "pmin-contracts",
       "pmin-kit",
       "pmin-tools"
     ],
@@ -167,6 +178,7 @@
     "title": "Run services and containers. Start servers, databases, and containers, and manage how they run.",
     "audience": "user",
     "requires": [
+      "pmin-contracts",
       "pmin-kit",
       "pmin-tools"
     ],
@@ -182,6 +194,8 @@
     "title": "Write, build, and run code. Compile, test, and debug programs, and run scripts and jobs.",
     "audience": "user",
     "requires": [
+      "pmin-base",
+      "pmin-contracts",
       "pmin-kit",
       "pmin-tools"
     ],
@@ -194,7 +208,10 @@
     "summary": "Settings-file formats engine used by Function 3 (pmin-quill)",
     "function": 3,
     "audience": "user",
-    "requires": [],
+    "requires": [
+      "pmin-contracts",
+      "pmin-sys"
+    ],
     "status": "v0"
   },
   {
@@ -205,6 +222,7 @@
     "audience": "user",
     "requires": [
       "pmin-appkit",
+      "pmin-base",
       "pmin-kit",
       "pmin-spec"
     ],
@@ -220,7 +238,9 @@
     "title": "Get help and tailor your environment. Use man pages and --help, and set up aliases, prompts, and shell config.",
     "audience": "user",
     "requires": [
+      "pmin-contracts",
       "pmin-kit",
+      "pmin-sys",
       "pmin-tools"
     ],
     "status": "v0"
@@ -277,7 +297,7 @@
     "function": 5,
     "audience": "user",
     "requires": [
-      "pmin-tools"
+      "pmin-contracts"
     ],
     "status": "v0"
   },
@@ -307,6 +327,8 @@
     "title": "Track and share code. Version your work and collaborate with Git.",
     "audience": "user",
     "requires": [
+      "pmin-base",
+      "pmin-contracts",
       "pmin-kit",
       "pmin-tools"
     ],
@@ -322,6 +344,8 @@
     "title": "Search and read text and data. View, filter, and summarize files and logs, from a short config to a multi-gigabyte dataset.",
     "audience": "user",
     "requires": [
+      "pmin-base",
+      "pmin-contracts",
       "pmin-kit",
       "pmin-tools"
     ],
@@ -337,9 +361,14 @@
     "title": "Monitor and troubleshoot. Read logs, diagnose faults, and test networks and system health.",
     "audience": "user",
     "requires": [
+      "pmin-base",
+      "pmin-contracts",
       "pmin-kit",
-      "pmin-loom",
+      "pmin-sys",
       "pmin-tools"
+    ],
+    "testRequires": [
+      "pmin-jobhealth"
     ],
     "status": "v0"
   },
@@ -353,9 +382,13 @@
     "title": "Automate with scripts and schedules. Save repeatable work as shell scripts and run it on a timer or trigger.",
     "audience": "user",
     "requires": [
-      "pmin-jobhealth",
+      "pmin-base",
+      "pmin-contracts",
       "pmin-kit",
       "pmin-tools"
+    ],
+    "testRequires": [
+      "pmin-jobhealth"
     ],
     "status": "v0"
   },
@@ -367,6 +400,7 @@
     "function": 10,
     "audience": "user",
     "requires": [
+      "pmin-contracts",
       "pmin-tools"
     ],
     "status": "v0"
@@ -381,7 +415,10 @@
     "title": "Manage processes and resources. Start, background, pause, and kill programs, and check CPU, memory, and disk use.",
     "audience": "user",
     "requires": [
+      "pmin-base",
+      "pmin-contracts",
       "pmin-kit",
+      "pmin-sys",
       "pmin-tools"
     ],
     "status": "v0"
@@ -396,9 +433,14 @@
     "title": "Edit text and config. Change code, config files, and scripts without leaving the terminal.",
     "audience": "user",
     "requires": [
-      "pmin-formats",
+      "pmin-base",
+      "pmin-contracts",
       "pmin-kit",
+      "pmin-sys",
       "pmin-tools"
+    ],
+    "testRequires": [
+      "pmin-formats"
     ],
     "status": "v0"
   },
@@ -409,7 +451,10 @@
     "summary": "Disk engine used by Function 7 and pmin-diskmap",
     "function": 7,
     "audience": "user",
-    "requires": [],
+    "requires": [
+      "pmin-contracts",
+      "pmin-sys"
+    ],
     "status": "v0"
   },
   {
@@ -419,7 +464,9 @@
     "summary": "Serial console engine used by Function 12 (pmin-bridge)",
     "function": 12,
     "audience": "user",
-    "requires": [],
+    "requires": [
+      "pmin-contracts"
+    ],
     "status": "v0"
   },
   {
@@ -451,7 +498,8 @@
     "layer": 2,
     "summary": "Foundation 2: reading the system and other programs' output",
     "audience": "contributor",
-    "requires": [
+    "requires": [],
+    "testRequires": [
       "pmin-base"
     ],
     "status": "v0"
@@ -479,9 +527,13 @@
     "title": "Manage users, permissions, and security. Control who can access what, and configure firewalls and network settings.",
     "audience": "user",
     "requires": [
+      "pmin-base",
+      "pmin-contracts",
       "pmin-kit",
-      "pmin-netfilter",
       "pmin-tools"
+    ],
+    "testRequires": [
+      "pmin-netfilter"
     ],
     "status": "v0"
   },
