@@ -45,6 +45,30 @@ Both generated files come from each repository's `pmin.json` and from `data/`; r
 | | **Learn and customize** | |
 | 15 | Get help and tailor your environment. Use man pages and --help, and set up aliases, prompts, and shell config. | pmin-hearth |
 
+## What a framework can add to each module
+
+Every function module has an `Extension` type (in its `ext.go`) and a way to use it that adds and never replaces or loosens.
+
+| # | Module | A framework can add |
+| --- | --- | --- |
+| 1 | pmin-atlas | paths never to move, trash or delete |
+| 2 | pmin-lens | ready-made searches |
+| 3 | pmin-quill | settings that must not change, by file and key |
+| 4 | pmin-conduit | filters and source programs |
+| 5 | pmin-loom | recipe templates |
+| 6 | pmin-forge | kinds of project |
+| 7 | pmin-pulse | programs never to stop, end or reprioritise |
+| 8 | pmin-engine | sources of services and jobs |
+| 9 | pmin-depot | packages never to remove |
+| 10 | pmin-warden | an ssh hardening baseline |
+| 11 | pmin-lookout | checks and symptoms |
+| 12 | pmin-bridge | serial console presets |
+| 13 | pmin-courier | places never to mirror into |
+| 14 | pmin-ledger | branches never to delete, force-push or hard reset |
+| 15 | pmin-hearth | prompts (text only, never commands) |
+
+pmin-scan, the disk engine under Function 7, takes a framework's known places as a places file.
+
 ## The 12 target industries
 
 | # | Industry | Slug |
