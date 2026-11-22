@@ -26,7 +26,7 @@ One per core function: the primary axis.
 | 7 | pmin-pulse | Manage processes and resources. Start, background, pause, and kill programs, and check CPU, memory, and disk use. | pmin-kit, pmin-tools |
 | 8 | pmin-engine | Run services and containers. Start servers, databases, and containers, and manage how they run. | pmin-kit, pmin-tools |
 | 9 | pmin-depot | Install and manage software. Add, update, and remove packages and libraries, and pin versions. | pmin-kit, pmin-tools |
-| 10 | pmin-warden | Manage users, permissions, and security. Control who can access what, and configure firewalls and network settings. | pmin-kit, pmin-tools |
+| 10 | pmin-warden | Manage users, permissions, and security. Control who can access what, and configure firewalls and network settings. | pmin-kit, pmin-netfilter, pmin-tools |
 | 11 | pmin-lookout | Monitor and troubleshoot. Read logs, diagnose faults, and test networks and system health. | pmin-kit, pmin-loom, pmin-tools |
 | 12 | pmin-bridge | Connect to other machines. Log in to remote servers, clusters, and devices over SSH or serial. | pmin-kit, pmin-tools |
 | 13 | pmin-courier | Transfer and fetch data. Download, upload, and sync files between machines and from the web. | pmin-bridge, pmin-kit, pmin-tools |
@@ -39,6 +39,7 @@ Libraries a function module builds on.
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
+| pmin-netfilter | Firewall and network engine used by Function 10 (pmin-warden) | pmin-tools |
 | pmin-scan | Disk engine used by Function 7 and pmin-diskmap | - |
 
 ## Wrap pipeline

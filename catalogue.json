@@ -308,6 +308,18 @@
     "status": "v0"
   },
   {
+    "name": "pmin-netfilter",
+    "module": "github.com/CurtisD4q/pmin-netfilter",
+    "tier": "engine",
+    "summary": "Firewall and network engine used by Function 10 (pmin-warden)",
+    "function": 10,
+    "audience": "user",
+    "requires": [
+      "pmin-tools"
+    ],
+    "status": "v0"
+  },
+  {
     "name": "pmin-pulse",
     "module": "github.com/CurtisD4q/pmin-pulse",
     "tier": "function",
@@ -390,6 +402,7 @@
     "audience": "user",
     "requires": [
       "pmin-kit",
+      "pmin-netfilter",
       "pmin-tools"
     ],
     "status": "v0"
