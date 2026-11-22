@@ -246,6 +246,18 @@
     "status": "v0"
   },
   {
+    "name": "pmin-jobhealth",
+    "module": "github.com/CurtisD4q/pmin-jobhealth",
+    "tier": "engine",
+    "summary": "Job-health engine used by Function 5 (pmin-loom)",
+    "function": 5,
+    "audience": "user",
+    "requires": [
+      "pmin-tools"
+    ],
+    "status": "v0"
+  },
+  {
     "name": "pmin-kit",
     "module": "github.com/CurtisD4q/pmin-kit",
     "tier": "foundation",
@@ -313,6 +325,7 @@
     "title": "Automate with scripts and schedules. Save repeatable work as shell scripts and run it on a timer or trigger.",
     "audience": "user",
     "requires": [
+      "pmin-jobhealth",
       "pmin-kit",
       "pmin-tools"
     ],

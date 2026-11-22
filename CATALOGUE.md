@@ -21,7 +21,7 @@ One per core function: the primary axis.
 | 2 | pmin-lens | Search and read text and data. View, filter, and summarize files and logs, from a short config to a multi-gigabyte dataset. | pmin-kit, pmin-tools |
 | 3 | pmin-quill | Edit text and config. Change code, config files, and scripts without leaving the terminal. | pmin-formats, pmin-kit, pmin-tools |
 | 4 | pmin-conduit | Combine tools with pipes and redirection. Chain small commands so the output of one becomes the input of the next. | pmin-kit, pmin-tools |
-| 5 | pmin-loom | Automate with scripts and schedules. Save repeatable work as shell scripts and run it on a timer or trigger. | pmin-kit, pmin-tools |
+| 5 | pmin-loom | Automate with scripts and schedules. Save repeatable work as shell scripts and run it on a timer or trigger. | pmin-jobhealth, pmin-kit, pmin-tools |
 | 6 | pmin-forge | Write, build, and run code. Compile, test, and debug programs, and run scripts and jobs. | pmin-kit, pmin-tools |
 | 7 | pmin-pulse | Manage processes and resources. Start, background, pause, and kill programs, and check CPU, memory, and disk use. | pmin-kit, pmin-tools |
 | 8 | pmin-engine | Run services and containers. Start servers, databases, and containers, and manage how they run. | pmin-kit, pmin-tools |
@@ -40,6 +40,7 @@ Libraries a function module builds on.
 | Repository | What it is | Requires |
 | --- | --- | --- |
 | pmin-formats | Settings-file formats engine used by Function 3 (pmin-quill) | - |
+| pmin-jobhealth | Job-health engine used by Function 5 (pmin-loom) | pmin-tools |
 | pmin-netfilter | Firewall and network engine used by Function 10 (pmin-warden) | pmin-tools |
 | pmin-scan | Disk engine used by Function 7 and pmin-diskmap | - |
 | pmin-serial | Serial console engine used by Function 12 (pmin-bridge) | - |
