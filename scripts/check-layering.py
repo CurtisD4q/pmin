@@ -16,7 +16,10 @@ needed), then checks:
      foundation  -> a lower foundation layer only (pmin.json "layer":
                     1 base, 2 sys, 3 kit, 4 tools, 5 contracts)
      engine, function, wrap, frameworks -> foundation only
-     program     -> anything but another program
+     program     -> anything (pmin's own programs may use each other)
+     example     -> anything but a program or another example (programs
+                    built with pmin: they may copy from pmin's programs,
+                    never depend on them)
    Tests may also use engines (testRequires): a module's tests can check
    it against the real engine a program will plug in, while the module
    itself stays independent. A framework's tests may also use the
@@ -44,7 +47,8 @@ ALLOWED = {
     "function": {"foundation"},
     "wrap": {"foundation"},
     "frameworks": {"foundation"},
-    "program": {"foundation", "engine", "function", "wrap", "frameworks"},
+    "program": {"foundation", "engine", "function", "wrap", "frameworks", "program"},
+    "example": {"foundation", "engine", "function", "wrap", "frameworks"},
 }
 
 # OLD is what each tier could require before the rule; while STRICT is
