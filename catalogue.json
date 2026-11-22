@@ -164,6 +164,16 @@
     "status": "v0"
   },
   {
+    "name": "pmin-formats",
+    "module": "github.com/CurtisD4q/pmin-formats",
+    "tier": "engine",
+    "summary": "Settings-file formats engine used by Function 3 (pmin-quill)",
+    "function": 3,
+    "audience": "user",
+    "requires": [],
+    "status": "v0"
+  },
+  {
     "name": "pmin-gen",
     "module": "github.com/CurtisD4q/pmin-gen",
     "tier": "wrap",
@@ -345,6 +355,7 @@
     "title": "Edit text and config. Change code, config files, and scripts without leaving the terminal.",
     "audience": "user",
     "requires": [
+      "pmin-formats",
       "pmin-kit",
       "pmin-tools"
     ],
