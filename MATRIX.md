@@ -8,20 +8,20 @@ Industries: **devops** = 1. Cloud Computing/DevOps/IT Infrastructure; **webdev**
 
 | # | Module | devops | webdev | cyber | datasci | fintech | vfx | science | telecom | retail | auto | health | energy |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | mint-atlas |   |   |   |   |   |   |   |   |   |   |   |   |
-| 2 | mint-lens |   |   |   |   |   |   |   |   |   |   |   |   |
-| 3 | mint-quill |   |   |   |   |   |   |   |   |   |   |   |   |
-| 4 | mint-conduit |   |   |   |   |   |   |   |   |   |   |   |   |
-| 5 | mint-loom |   |   |   |   |   |   |   |   |   |   |   |   |
-| 6 | mint-forge |   |   |   |   |   |   |   |   |   |   |   |   |
-| 7 | mint-pulse |   |   |   |   |   |   |   |   |   |   |   |   |
-| 8 | mint-engine |   |   |   |   |   |   |   |   |   |   |   |   |
-| 9 | mint-depot |   |   |   |   |   |   |   |   |   |   |   |   |
-| 10 | mint-warden |   |   |   |   |   |   |   |   |   |   |   |   |
-| 11 | mint-lookout |   |   |   |   |   |   |   |   |   |   |   |   |
-| 12 | mint-bridge |   |   |   |   |   |   |   |   |   |   |   |   |
-| 13 | mint-courier |   |   |   |   |   |   |   |   |   |   |   |   |
-| 14 | mint-ledger |   |   |   |   |   |   |   |   |   |   |   |   |
-| 15 | mint-hearth |   |   |   |   |   |   |   |   |   |   |   |   |
+| 1 | pmin-atlas |   |   |   |   |   |   |   |   |   |   |   |   |
+| 2 | pmin-lens |   |   |   |   |   |   |   |   |   |   |   |   |
+| 3 | pmin-quill |   |   |   |   |   |   |   |   |   |   |   |   |
+| 4 | pmin-conduit |   |   |   |   |   |   |   |   |   |   |   |   |
+| 5 | pmin-loom |   |   |   |   |   |   |   |   |   |   |   |   |
+| 6 | pmin-forge |   |   |   |   |   |   |   |   |   |   |   |   |
+| 7 | pmin-pulse |   |   |   |   |   |   |   |   |   |   |   |   |
+| 8 | pmin-engine |   |   |   |   |   |   |   |   |   |   |   |   |
+| 9 | pmin-depot |   |   |   |   |   |   |   |   |   |   |   |   |
+| 10 | pmin-warden |   |   |   |   |   |   |   |   |   |   |   |   |
+| 11 | pmin-lookout |   |   |   |   |   |   |   |   |   |   |   |   |
+| 12 | pmin-bridge |   |   |   |   |   |   |   |   |   |   |   |   |
+| 13 | pmin-courier |   |   |   |   |   |   |   |   |   |   |   |   |
+| 14 | pmin-ledger |   |   |   |   |   |   |   |   |   |   |   |   |
+| 15 | pmin-hearth |   |   |   |   |   |   |   |   |   |   |   |   |
 
 Cells with content: 0 of 180.

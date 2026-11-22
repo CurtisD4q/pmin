@@ -4,104 +4,104 @@
     "group": "Work with files and text",
     "text": "Navigate and manage files. Move, copy, rename, delete, find, and compress files and directories.",
     "slug": "files",
-    "module": "mint-atlas"
+    "module": "pmin-atlas"
   },
   {
     "number": 2,
     "group": "Work with files and text",
     "text": "Search and read text and data. View, filter, and summarize files and logs, from a short config to a multi-gigabyte dataset.",
     "slug": "read",
-    "module": "mint-lens"
+    "module": "pmin-lens"
   },
   {
     "number": 3,
     "group": "Work with files and text",
     "text": "Edit text and config. Change code, config files, and scripts without leaving the terminal.",
     "slug": "edit",
-    "module": "mint-quill"
+    "module": "pmin-quill"
   },
   {
     "number": 4,
     "group": "Compose and automate",
     "text": "Combine tools with pipes and redirection. Chain small commands so the output of one becomes the input of the next.",
     "slug": "pipes",
-    "module": "mint-conduit"
+    "module": "pmin-conduit"
   },
   {
     "number": 5,
     "group": "Compose and automate",
     "text": "Automate with scripts and schedules. Save repeatable work as shell scripts and run it on a timer or trigger.",
     "slug": "automate",
-    "module": "mint-loom"
+    "module": "pmin-loom"
   },
   {
     "number": 6,
     "group": "Run and build",
     "text": "Write, build, and run code. Compile, test, and debug programs, and run scripts and jobs.",
     "slug": "build",
-    "module": "mint-forge"
+    "module": "pmin-forge"
   },
   {
     "number": 7,
     "group": "Run and build",
     "text": "Manage processes and resources. Start, background, pause, and kill programs, and check CPU, memory, and disk use.",
     "slug": "processes",
-    "module": "mint-pulse"
+    "module": "pmin-pulse"
   },
   {
     "number": 8,
     "group": "Run and build",
     "text": "Run services and containers. Start servers, databases, and containers, and manage how they run.",
     "slug": "services",
-    "module": "mint-engine"
+    "module": "pmin-engine"
   },
   {
     "number": 9,
     "group": "Manage the system",
     "text": "Install and manage software. Add, update, and remove packages and libraries, and pin versions.",
     "slug": "software",
-    "module": "mint-depot"
+    "module": "pmin-depot"
   },
   {
     "number": 10,
     "group": "Manage the system",
     "text": "Manage users, permissions, and security. Control who can access what, and configure firewalls and network settings.",
     "slug": "security",
-    "module": "mint-warden"
+    "module": "pmin-warden"
   },
   {
     "number": 11,
     "group": "Manage the system",
     "text": "Monitor and troubleshoot. Read logs, diagnose faults, and test networks and system health.",
     "slug": "monitor",
-    "module": "mint-lookout"
+    "module": "pmin-lookout"
   },
   {
     "number": 12,
     "group": "Reach out and collaborate",
     "text": "Connect to other machines. Log in to remote servers, clusters, and devices over SSH or serial.",
     "slug": "remote",
-    "module": "mint-bridge"
+    "module": "pmin-bridge"
   },
   {
     "number": 13,
     "group": "Reach out and collaborate",
     "text": "Transfer and fetch data. Download, upload, and sync files between machines and from the web.",
     "slug": "transfer",
-    "module": "mint-courier"
+    "module": "pmin-courier"
   },
   {
     "number": 14,
     "group": "Reach out and collaborate",
     "text": "Track and share code. Version your work and collaborate with Git.",
     "slug": "git",
-    "module": "mint-ledger"
+    "module": "pmin-ledger"
   },
   {
     "number": 15,
     "group": "Learn and customize",
     "text": "Get help and tailor your environment. Use man pages and --help, and set up aliases, prompts, and shell config.",
     "slug": "help",
-    "module": "mint-hearth"
+    "module": "pmin-hearth"
   }
 ]

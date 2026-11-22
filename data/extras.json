@@ -26,17 +26,17 @@
     "summary": "A live-coding music instrument; it does not use the pmin libraries"
   },
   {
-    "name": "mint-clock",
+    "name": "pmin-clock",
     "tier": "empty",
     "summary": "Licence only; purpose not decided yet"
   },
   {
-    "name": "mint-since",
+    "name": "pmin-since",
     "tier": "empty",
     "summary": "Licence only; purpose not decided yet"
   },
   {
-    "name": "mint-strata",
+    "name": "pmin-strata",
     "tier": "empty",
     "summary": "Licence only; purpose not decided yet"
   },

@@ -29,9 +29,10 @@ ALT = "|".join(sorted(NAMES, key=len, reverse=True))
 
 # github.com/CurtisD4q/mint-kit, not mint-wrap-legacy or mint-wrapper.
 MODULE = re.compile(r"(github\.com/CurtisD4q/)mint-(" + ALT + r")(?![\w-])")
-# A bare name in prose, pmin.json or the front door's data: not after / . ~
-# or a word, not before / - or a word.
-BARE = re.compile(r"(?<![\w/.~-])mint-(" + ALT + r")(?![\w/-])")
+# A bare name in prose, pmin.json or the front door's data: not after / . ~ "
+# or a word, not before / - or a word. "mint-hub wrap" and "mint-hub" in
+# quotes are the hub's command, which keeps its name.
+BARE = re.compile(r"(?<![\w/.~\"-])mint-(" + ALT + r")(?![\w/-]| wrap)")
 # /path/to/mint-kit in setup instructions is a clone, so it is renamed too.
 CLONE = re.compile(r"(/path/to/)mint-(" + ALT + r")(?![\w-])")
 
@@ -56,9 +57,16 @@ FIXUPS = [
 ]
 
 
+def folder(root, repo):
+    """A repository's clone: under its new name if renamed, else the old."""
+    new = os.path.join(root, repo.replace("mint-", "pmin-", 1))
+    return new if os.path.isdir(new) else os.path.join(root, repo)
+
+
 def fixup(root, dry):
     for rel, old, new in FIXUPS:
-        p = os.path.join(root, rel)
+        repo, _, rest = rel.partition("/")
+        p = os.path.join(folder(root, repo), rest)
         text = open(p, encoding="utf-8").read()
         if new in text:
             continue
@@ -87,7 +95,7 @@ def main():
     a = ap.parse_args()
     total = 0
     for repo in REPOS:
-        top = os.path.join(a.root, repo)
+        top = folder(a.root, repo)
         if not os.path.isdir(top):
             print("missing:", repo)
             continue
@@ -95,7 +103,7 @@ def main():
         for dirpath, dirnames, filenames in os.walk(top):
             dirnames[:] = [d for d in dirnames if d != ".git"]
             for f in filenames:
-                if os.path.splitext(f)[1] not in TEXT or f == "go.sum":
+                if os.path.splitext(f)[1] not in TEXT or f in ("go.sum", "rename-modules.py"):
                     continue
                 p = os.path.join(dirpath, f)
                 try:

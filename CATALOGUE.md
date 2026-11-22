@@ -8,8 +8,8 @@ Libraries every module builds on.
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| mint-kit | Screens and widgets for every program | - |
-| mint-tools | Action contract, audit, redaction and shared helpers | mint-kit |
+| pmin-kit | Screens and widgets for every program | - |
+| pmin-tools | Action contract, audit, redaction and shared helpers | pmin-kit |
 
 ## Function modules
 
@@ -17,21 +17,21 @@ One per core function: the primary axis.
 
 | # | Module | Function | Requires |
 | --- | --- | --- | --- |
-| 1 | mint-atlas | Navigate and manage files. Move, copy, rename, delete, find, and compress files and directories. | mint-kit, mint-tools |
-| 2 | mint-lens | Search and read text and data. View, filter, and summarize files and logs, from a short config to a multi-gigabyte dataset. | mint-kit, mint-tools |
-| 3 | mint-quill | Edit text and config. Change code, config files, and scripts without leaving the terminal. | mint-kit, mint-tools |
-| 4 | mint-conduit | Combine tools with pipes and redirection. Chain small commands so the output of one becomes the input of the next. | mint-kit, mint-tools |
-| 5 | mint-loom | Automate with scripts and schedules. Save repeatable work as shell scripts and run it on a timer or trigger. | mint-kit, mint-tools |
-| 6 | mint-forge | Write, build, and run code. Compile, test, and debug programs, and run scripts and jobs. | mint-kit, mint-tools |
-| 7 | mint-pulse | Manage processes and resources. Start, background, pause, and kill programs, and check CPU, memory, and disk use. | mint-kit, mint-tools |
-| 8 | mint-engine | Run services and containers. Start servers, databases, and containers, and manage how they run. | mint-kit, mint-tools |
-| 9 | mint-depot | Install and manage software. Add, update, and remove packages and libraries, and pin versions. | mint-kit, mint-tools |
-| 10 | mint-warden | Manage users, permissions, and security. Control who can access what, and configure firewalls and network settings. | mint-kit, mint-tools |
-| 11 | mint-lookout | Monitor and troubleshoot. Read logs, diagnose faults, and test networks and system health. | mint-kit, mint-loom, mint-tools |
-| 12 | mint-bridge | Connect to other machines. Log in to remote servers, clusters, and devices over SSH or serial. | mint-kit, mint-tools |
-| 13 | mint-courier | Transfer and fetch data. Download, upload, and sync files between machines and from the web. | mint-bridge, mint-kit, mint-tools |
-| 14 | mint-ledger | Track and share code. Version your work and collaborate with Git. | mint-kit, mint-tools |
-| 15 | mint-hearth | Get help and tailor your environment. Use man pages and --help, and set up aliases, prompts, and shell config. | mint-kit, mint-tools |
+| 1 | pmin-atlas | Navigate and manage files. Move, copy, rename, delete, find, and compress files and directories. | pmin-kit, pmin-tools |
+| 2 | pmin-lens | Search and read text and data. View, filter, and summarize files and logs, from a short config to a multi-gigabyte dataset. | pmin-kit, pmin-tools |
+| 3 | pmin-quill | Edit text and config. Change code, config files, and scripts without leaving the terminal. | pmin-kit, pmin-tools |
+| 4 | pmin-conduit | Combine tools with pipes and redirection. Chain small commands so the output of one becomes the input of the next. | pmin-kit, pmin-tools |
+| 5 | pmin-loom | Automate with scripts and schedules. Save repeatable work as shell scripts and run it on a timer or trigger. | pmin-kit, pmin-tools |
+| 6 | pmin-forge | Write, build, and run code. Compile, test, and debug programs, and run scripts and jobs. | pmin-kit, pmin-tools |
+| 7 | pmin-pulse | Manage processes and resources. Start, background, pause, and kill programs, and check CPU, memory, and disk use. | pmin-kit, pmin-tools |
+| 8 | pmin-engine | Run services and containers. Start servers, databases, and containers, and manage how they run. | pmin-kit, pmin-tools |
+| 9 | pmin-depot | Install and manage software. Add, update, and remove packages and libraries, and pin versions. | pmin-kit, pmin-tools |
+| 10 | pmin-warden | Manage users, permissions, and security. Control who can access what, and configure firewalls and network settings. | pmin-kit, pmin-tools |
+| 11 | pmin-lookout | Monitor and troubleshoot. Read logs, diagnose faults, and test networks and system health. | pmin-kit, pmin-loom, pmin-tools |
+| 12 | pmin-bridge | Connect to other machines. Log in to remote servers, clusters, and devices over SSH or serial. | pmin-kit, pmin-tools |
+| 13 | pmin-courier | Transfer and fetch data. Download, upload, and sync files between machines and from the web. | pmin-bridge, pmin-kit, pmin-tools |
+| 14 | pmin-ledger | Track and share code. Version your work and collaborate with Git. | pmin-kit, pmin-tools |
+| 15 | pmin-hearth | Get help and tailor your environment. Use man pages and --help, and set up aliases, prompts, and shell config. | pmin-kit, pmin-tools |
 
 ## Engines
 
@@ -39,7 +39,7 @@ Libraries a function module builds on.
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| mint-scan | Disk engine used by Function 7 and mint-diskmap | - |
+| pmin-scan | Disk engine used by Function 7 and pmin-diskmap | - |
 
 ## Wrap pipeline
 
@@ -47,10 +47,10 @@ Describe any command-line program and open it as a form.
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| mint-appkit | Turns a spec into a form-based interface | mint-kit, mint-spec |
-| mint-gen | Generates Go source from a spec | mint-appkit, mint-kit, mint-spec |
-| mint-spec | Describes a command-line program as data | mint-kit |
-| mint-wrap | Opens any command-line program as a form: Store, standalone copies, HandleArgs and the ui screens, used by mint-hub | mint-gen, mint-kit, mint-spec |
+| pmin-appkit | Turns a spec into a form-based interface | pmin-kit, pmin-spec |
+| pmin-gen | Generates Go source from a spec | pmin-appkit, pmin-kit, pmin-spec |
+| pmin-spec | Describes a command-line program as data | pmin-kit |
+| pmin-wrap | Opens any command-line program as a form: Store, standalone copies, HandleArgs and the ui screens, used by pmin-hub | pmin-gen, pmin-kit, pmin-spec |
 
 ## Industry frameworks
 
@@ -66,8 +66,8 @@ Assemble the modules into something to run.
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| mint-diskmap | Disk map program, binary mint-dm | mint-kit, mint-scan |
-| mint-hub | One entry point that assembles the function modules | mint-atlas, mint-bridge, mint-conduit, mint-courier, mint-depot, mint-engine, mint-forge, mint-hearth, mint-kit, mint-ledger, mint-lens, mint-lookout, mint-loom, mint-pulse, mint-quill, mint-tools, mint-warden, mint-wrap |
+| pmin-diskmap | Disk map program, binary mint-dm | pmin-kit, pmin-scan |
+| pmin-hub | One entry point that assembles the function modules | pmin-atlas, pmin-bridge, pmin-conduit, pmin-courier, pmin-depot, pmin-engine, pmin-forge, pmin-hearth, pmin-kit, pmin-ledger, pmin-lens, pmin-lookout, pmin-loom, pmin-pulse, pmin-quill, pmin-tools, pmin-warden, pmin-wrap |
 
 ## Front door
 
@@ -96,9 +96,9 @@ Related projects that do not use the libraries.
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| mint-clock | Licence only; purpose not decided yet | - |
-| mint-since | Licence only; purpose not decided yet | - |
-| mint-strata | Licence only; purpose not decided yet | - |
+| pmin-clock | Licence only; purpose not decided yet | - |
+| pmin-since | Licence only; purpose not decided yet | - |
+| pmin-strata | Licence only; purpose not decided yet | - |
 
 ## Legacy
 
