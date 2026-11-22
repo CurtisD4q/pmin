@@ -21,21 +21,8 @@
   },
   {
     "name": "pmin-appkit",
-    "module": "github.com/CurtisD4q/pmin-appkit",
-    "tier": "wrap",
-    "summary": "Turns a spec into a form-based interface",
-    "audience": "user",
-    "contributorParts": [
-      "templates/",
-      "CATALOGUE.md",
-      "tools/"
-    ],
-    "requires": [
-      "pmin-kit",
-      "pmin-spec",
-      "pmin-tools"
-    ],
-    "status": "v0"
+    "tier": "legacy",
+    "summary": "Merged into pmin-wrap as the appkit package; kept as it was for pinned users (cairn); to be archived"
   },
   {
     "name": "pmin-atlas",
@@ -216,17 +203,8 @@
   },
   {
     "name": "pmin-gen",
-    "module": "github.com/CurtisD4q/pmin-gen",
-    "tier": "wrap",
-    "summary": "Generates Go source from a spec",
-    "audience": "user",
-    "requires": [
-      "pmin-appkit",
-      "pmin-base",
-      "pmin-kit",
-      "pmin-spec"
-    ],
-    "status": "v0"
+    "tier": "legacy",
+    "summary": "Merged into pmin-wrap as the gen package; kept as it was for pinned users (cairn); to be archived"
   },
   {
     "name": "pmin-hearth",
@@ -281,11 +259,14 @@
     "summary": "The industry frameworks: add-ons to the function modules, one folder per industry",
     "audience": "user",
     "requires": [
+      "pmin-contracts",
+      "pmin-tools"
+    ],
+    "testRequires": [
       "pmin-conduit",
       "pmin-forge",
       "pmin-lookout",
-      "pmin-scan",
-      "pmin-tools"
+      "pmin-scan"
     ],
     "status": "v0"
   },
@@ -476,15 +457,8 @@
   },
   {
     "name": "pmin-spec",
-    "module": "github.com/CurtisD4q/pmin-spec",
-    "tier": "wrap",
-    "summary": "Describes a command-line program as data",
-    "audience": "user",
-    "requires": [
-      "pmin-kit",
-      "pmin-tools"
-    ],
-    "status": "v0"
+    "tier": "legacy",
+    "summary": "Merged into pmin-wrap as the spec package; kept as it was for pinned users (cairn); to be archived"
   },
   {
     "name": "pmin-strata",
@@ -544,9 +518,10 @@
     "summary": "Opens any command-line program as a form: Store, standalone copies, HandleArgs and the ui screens, used by pmin-hub",
     "audience": "user",
     "requires": [
-      "pmin-gen",
+      "pmin-base",
       "pmin-kit",
-      "pmin-spec"
+      "pmin-sys",
+      "pmin-tools"
     ],
     "status": "v2"
   },

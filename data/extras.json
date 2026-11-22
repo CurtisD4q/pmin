@@ -44,5 +44,20 @@
     "name": "mint-wrap-legacy",
     "tier": "legacy",
     "summary": "Frozen copy of the old single repository; nothing imports it; archived"
+  },
+  {
+    "name": "pmin-spec",
+    "tier": "legacy",
+    "summary": "Merged into pmin-wrap as the spec package; kept as it was for pinned users (cairn); to be archived"
+  },
+  {
+    "name": "pmin-appkit",
+    "tier": "legacy",
+    "summary": "Merged into pmin-wrap as the appkit package; kept as it was for pinned users (cairn); to be archived"
+  },
+  {
+    "name": "pmin-gen",
+    "tier": "legacy",
+    "summary": "Merged into pmin-wrap as the gen package; kept as it was for pinned users (cairn); to be archived"
   }
 ]

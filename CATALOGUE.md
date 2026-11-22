@@ -54,10 +54,7 @@ Describe any command-line program and open it as a form.
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| pmin-appkit | Turns a spec into a form-based interface | pmin-kit, pmin-spec, pmin-tools |
-| pmin-gen | Generates Go source from a spec | pmin-appkit, pmin-base, pmin-kit, pmin-spec |
-| pmin-spec | Describes a command-line program as data | pmin-kit, pmin-tools |
-| pmin-wrap | Opens any command-line program as a form: Store, standalone copies, HandleArgs and the ui screens, used by pmin-hub | pmin-gen, pmin-kit, pmin-spec |
+| pmin-wrap | Opens any command-line program as a form: Store, standalone copies, HandleArgs and the ui screens, used by pmin-hub | pmin-base, pmin-kit, pmin-sys, pmin-tools |
 
 ## Industry frameworks
 
@@ -65,7 +62,7 @@ Add-ons to the function modules: specifications, conditions, contexts, rules and
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| pmin-industries | The industry frameworks: add-ons to the function modules, one folder per industry | pmin-conduit, pmin-forge, pmin-lookout, pmin-scan, pmin-tools |
+| pmin-industries | The industry frameworks: add-ons to the function modules, one folder per industry | pmin-contracts, pmin-tools |
 
 ## Programs
 
@@ -112,3 +109,6 @@ Related projects that do not use the libraries.
 | Repository | What it is | Requires |
 | --- | --- | --- |
 | mint-wrap-legacy | Frozen copy of the old single repository; nothing imports it; archived | - |
+| pmin-appkit | Merged into pmin-wrap as the appkit package; kept as it was for pinned users (cairn); to be archived | - |
+| pmin-gen | Merged into pmin-wrap as the gen package; kept as it was for pinned users (cairn); to be archived | - |
+| pmin-spec | Merged into pmin-wrap as the spec package; kept as it was for pinned users (cairn); to be archived | - |
