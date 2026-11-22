@@ -203,6 +203,7 @@
       "pmin-engine",
       "pmin-forge",
       "pmin-hearth",
+      "pmin-industries",
       "pmin-kit",
       "pmin-ledger",
       "pmin-lens",
@@ -223,6 +224,8 @@
     "summary": "The industry frameworks: add-ons to the function modules, one folder per industry",
     "audience": "user",
     "requires": [
+      "pmin-conduit",
+      "pmin-lookout",
       "pmin-tools"
     ],
     "status": "v0"
