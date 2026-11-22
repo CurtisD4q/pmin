@@ -141,7 +141,8 @@ jobs:
                program     -> anything but another program
              Tests may also use engines (testRequires): a module's tests can check
              it against the real engine a program will plug in, while the module
-             itself stays independent.
+             itself stays independent. A framework's tests may also use the
+             function modules it extends.
              While STRICT is False (the move to this rule), a module that still
              requires another module is reported as a warning and does not fail;
              everything else fails as before.
@@ -178,8 +179,11 @@ jobs:
           }
 
 
-          # TEST_ALLOWED is what a repository's tests alone may require.
+          # TEST_ALLOWED is what a repository's tests alone may require. A
+          # framework's tests may also use the function modules it extends, to show
+          # its additions working in them; its code still uses only the foundation.
           TEST_ALLOWED = {"foundation", "engine"}
+          TEST_ALLOWED_FOR = {"frameworks": {"foundation", "engine", "function"}}
 
 
           def code_modules(repo):
@@ -244,8 +248,9 @@ jobs:
                   dep = json.load(open(dep_meta, encoding="utf-8"))
                   dep_tier = dep.get("tier")
                   if name in test_only:
-                      if dep_tier not in TEST_ALLOWED:
-                          problems.append(f"{meta['name']}'s tests may not require {name} ({dep_tier}): tests use only the foundation and engines")
+                      allowed = TEST_ALLOWED_FOR.get(tier, TEST_ALLOWED)
+                      if dep_tier not in allowed:
+                          problems.append(f"{meta['name']}'s tests may not require {name} ({dep_tier}): tests use only " + ", ".join(sorted(allowed)))
                       continue
                   if dep_tier not in ALLOWED[tier]:
                       msg = f"{meta['name']} ({tier}) may not require {name} ({dep_tier}): modules use only the foundation"

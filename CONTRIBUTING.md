@@ -13,7 +13,7 @@ Answer these in order; the first "yes" is the place.
 - **Modules use only the foundation.** Function modules, engines, the wrap pipeline and the frameworks import pmin-base, pmin-sys, pmin-kit, pmin-tools and pmin-contracts, and nothing else from the family. They are independent: none depends on another.
 - **When two modules must work together, they agree on a shape in pmin-contracts** (a type, or an interface such as `settings.Parser` or `machines.Book`), each codes against it, and a program plugs the real one in.
 - **The foundation is layered:** 1 pmin-base, 2 pmin-sys, 3 pmin-kit, 4 pmin-tools, 5 pmin-contracts. Each layer uses only the ones below it, and gives its number as `layer` in `pmin.json`.
-- **Tests may also use engines.** A module's tests can check it against the real engine a program will plug in (Quill's tests read real files with pmin-formats). `pmin.json` lists those under `testRequires`; the module's own code still uses only the foundation.
+- **Tests may also use engines.** A module's tests can check it against the real engine a program will plug in (Quill's tests read real files with pmin-formats). `pmin.json` lists those under `testRequires`; the module's own code still uses only the foundation. A framework's tests may also use the function modules it extends, to show its additions working in them.
 - **Programs** (`pmin-hub`, `pmin-diskmap`) may use anything but another program: they are where modules are connected.
 - The layering check in CI enforces this. [LAYERING.md](LAYERING.md) lists the modules that have not moved over yet; while it is not empty, those are warnings rather than failures.
 - A module's extension type changes only with care: a breaking change needs the `breaking` label, as `mint-tools/action` does today.
