@@ -218,9 +218,14 @@
   },
   {
     "name": "pmin-industries",
+    "module": "github.com/CurtisD4q/pmin-industries",
     "tier": "frameworks",
-    "summary": "The 12 industry frameworks, add-ons to the function modules",
-    "status": "planned"
+    "summary": "The industry frameworks: add-ons to the function modules, one folder per industry",
+    "audience": "user",
+    "requires": [
+      "pmin-tools"
+    ],
+    "status": "v0"
   },
   {
     "name": "pmin-kit",

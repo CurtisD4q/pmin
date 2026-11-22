@@ -58,7 +58,7 @@ Add-ons to the function modules: specifications, conditions, contexts, rules and
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| pmin-industries | The 12 industry frameworks, add-ons to the function modules *(planned)* | - |
+| pmin-industries | The industry frameworks: add-ons to the function modules, one folder per industry | pmin-tools |
 
 ## Programs
 
