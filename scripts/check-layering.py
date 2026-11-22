@@ -9,15 +9,15 @@ needed), then checks:
 1. pmin.json names a known tier.
 2. pmin.json "requires" lists exactly the family libraries go.mod requires
    directly, so the catalogue tells the truth.
-3. Each requirement is allowed for this tier:
-     foundation  -> foundation
-     engine      -> foundation
-     function    -> foundation, engine, function (sibling, as listed)
-     wrap        -> foundation, wrap
-     frameworks  -> foundation, engine, function, wrap
+3. Each requirement is allowed for this tier. The rule is that modules
+   depend only on the foundation, and programs wire modules together:
+     foundation  -> a lower foundation layer only (pmin.json "layer":
+                    1 base, 2 sys, 3 kit, 4 tools, 5 contracts)
+     engine, function, wrap, frameworks -> foundation only
      program     -> anything but another program
-   No library ever requires a program, and nothing requires frameworks
-   except a program.
+   While STRICT is False (the move to this rule), a module that still
+   requires another module is reported as a warning and does not fail;
+   everything else fails as before.
 
 usage: python3 check-layering.py [REPO_DIR]
 """
@@ -28,13 +28,26 @@ import subprocess
 import sys
 
 FAMILY = re.compile(r"^github\.com/CurtisD4q/(pmin-[a-z]+)(/v\d+)?$")
+# STRICT turns the modules-depend-only-on-the-foundation warnings into
+# failures. It becomes True once every module has moved over.
+STRICT = False
+
 ALLOWED = {
     "foundation": {"foundation"},
+    "engine": {"foundation"},
+    "function": {"foundation"},
+    "wrap": {"foundation"},
+    "frameworks": {"foundation"},
+    "program": {"foundation", "engine", "function", "wrap", "frameworks"},
+}
+
+# OLD is what each tier could require before the rule; while STRICT is
+# False, a requirement OLD allows and ALLOWED does not is only a warning.
+OLD = {
     "engine": {"foundation"},
     "function": {"foundation", "engine", "function"},
     "wrap": {"foundation", "wrap"},
     "frameworks": {"foundation", "engine", "function", "wrap"},
-    "program": {"foundation", "engine", "function", "wrap", "frameworks"},
 }
 
 
@@ -48,6 +61,7 @@ def go_json(args, cwd):
 def main():
     repo = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else ".")
     problems = []
+    warnings = []
     meta_path = os.path.join(repo, "pmin.json")
     if not os.path.isfile(meta_path):
         raise SystemExit("no pmin.json: every pmin repository describes itself in one")
@@ -78,10 +92,23 @@ def main():
         if not info.get("Dir") or not os.path.isfile(dep_meta):
             problems.append(f"{name}: no pmin.json in the required version, so its tier is unknown (update the requirement)")
             continue
-        dep_tier = json.load(open(dep_meta, encoding="utf-8")).get("tier")
+        dep = json.load(open(dep_meta, encoding="utf-8"))
+        dep_tier = dep.get("tier")
         if dep_tier not in ALLOWED[tier]:
-            problems.append(f"{meta['name']} ({tier}) may not require {name} ({dep_tier})")
+            msg = f"{meta['name']} ({tier}) may not require {name} ({dep_tier}): modules use only the foundation"
+            if not STRICT and dep_tier in OLD.get(tier, set()):
+                warnings.append(msg)
+            else:
+                problems.append(msg)
+        elif tier == "foundation":
+            mine, theirs = meta.get("layer"), dep.get("layer")
+            if not isinstance(mine, int) or not isinstance(theirs, int):
+                problems.append(f"{name}: foundation repositories give their layer in pmin.json")
+            elif theirs >= mine:
+                problems.append(f"{meta['name']} (layer {mine}) may not require {name} (layer {theirs}): a layer uses only the ones below it")
 
+    for w in warnings:
+        print("warning: " + w)
     if problems:
         print("Layering check failed:")
         for p in problems:

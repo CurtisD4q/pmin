@@ -11,10 +11,11 @@ Two axes, weighted 70 / 30:
 - **Function modules (70, the primary axis).** One repository for each of the 15 core functions below. Every repository, README, catalogue entry and CI check is keyed by function first. Logic that two industries need goes into the function module.
 - **Industry frameworks (30, the secondary axis).** Add-ons to the function modules, one per industry, kept in `pmin-industries`. A framework holds specifications, conditions, contexts, rules and variables for its industry. It runs nothing itself: everything still goes through the modules' one executor, with its previews, agreement and audit record.
 
-Under both sits the foundation (`pmin-kit` for screens, `pmin-tools` for the action contract and audit). Programs such as `pmin-hub` assemble the modules.
+Under both sits the foundation, in five layers: `pmin-base` (plain helpers), `pmin-sys` (reading the system), `pmin-kit` (screens), `pmin-tools` (doing things safely) and `pmin-contracts` (the shapes modules share). Modules use only the foundation, so none depends on another; programs such as `pmin-hub` connect them.
 
 - [CATALOGUE.md](CATALOGUE.md): every repository, by tier, with what it requires
 - [MATRIX.md](MATRIX.md): the 15 functions by the 12 industries, filled only where a framework has content
+- [LAYERING.md](LAYERING.md): the modules that still use another module, until they have all moved to using only the foundation
 - [CONTRIBUTING.md](CONTRIBUTING.md): where a change goes
 
 Both generated files come from each repository's `pmin.json` and from `data/`; run `python3 scripts/sync-catalogue.py` with the repositories cloned side by side to refresh them.

@@ -32,7 +32,8 @@
     ],
     "requires": [
       "pmin-kit",
-      "pmin-spec"
+      "pmin-spec",
+      "pmin-tools"
     ],
     "status": "v0"
   },
@@ -49,6 +50,16 @@
       "pmin-kit",
       "pmin-tools"
     ],
+    "status": "v0"
+  },
+  {
+    "name": "pmin-base",
+    "module": "github.com/CurtisD4q/pmin-base",
+    "tier": "foundation",
+    "layer": 1,
+    "summary": "Foundation 1: plain helpers with no dependencies",
+    "audience": "contributor",
+    "requires": [],
     "status": "v0"
   },
   {
@@ -81,6 +92,19 @@
     "group": "Compose and automate",
     "title": "Combine tools with pipes and redirection. Chain small commands so the output of one becomes the input of the next.",
     "audience": "user",
+    "requires": [
+      "pmin-kit",
+      "pmin-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "pmin-contracts",
+    "module": "github.com/CurtisD4q/pmin-contracts",
+    "tier": "foundation",
+    "layer": 5,
+    "summary": "Foundation 5: the shapes modules share, so none needs another",
+    "audience": "contributor",
     "requires": [
       "pmin-kit",
       "pmin-tools"
@@ -261,12 +285,16 @@
     "name": "pmin-kit",
     "module": "github.com/CurtisD4q/pmin-kit",
     "tier": "foundation",
+    "layer": 3,
     "summary": "Screens and widgets for every program",
     "audience": "user",
     "contributorParts": [
       "examples/"
     ],
-    "requires": [],
+    "requires": [
+      "pmin-base",
+      "pmin-sys"
+    ],
     "status": "v0"
   },
   {
@@ -406,7 +434,8 @@
     "summary": "Describes a command-line program as data",
     "audience": "user",
     "requires": [
-      "pmin-kit"
+      "pmin-kit",
+      "pmin-tools"
     ],
     "status": "v0"
   },
@@ -416,12 +445,26 @@
     "summary": "Licence only; purpose not decided yet"
   },
   {
+    "name": "pmin-sys",
+    "module": "github.com/CurtisD4q/pmin-sys",
+    "tier": "foundation",
+    "layer": 2,
+    "summary": "Foundation 2: reading the system and other programs' output",
+    "audience": "contributor",
+    "requires": [
+      "pmin-base"
+    ],
+    "status": "v0"
+  },
+  {
     "name": "pmin-tools",
     "module": "github.com/CurtisD4q/pmin-tools",
     "tier": "foundation",
+    "layer": 4,
     "summary": "Action contract, audit, redaction and shared helpers",
     "audience": "user",
     "requires": [
+      "pmin-base",
       "pmin-kit"
     ],
     "status": "v0"
