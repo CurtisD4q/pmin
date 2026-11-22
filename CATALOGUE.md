@@ -104,4 +104,4 @@ Related projects that do not use the libraries.
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| mint-wrap-legacy | Frozen copy of the old single repository; nothing imports it; suggested for archiving | - |
+| mint-wrap-legacy | Frozen copy of the old single repository; nothing imports it; archived | - |

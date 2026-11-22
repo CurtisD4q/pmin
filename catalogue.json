@@ -12,7 +12,7 @@
   {
     "name": "mint-wrap-legacy",
     "tier": "legacy",
-    "summary": "Frozen copy of the old single repository; nothing imports it; suggested for archiving"
+    "summary": "Frozen copy of the old single repository; nothing imports it; archived"
   },
   {
     "name": "pmin",
