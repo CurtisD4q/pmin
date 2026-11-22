@@ -7,14 +7,19 @@ library it requires (from the Go module cache, so no other access is
 needed), then checks:
 
 1. pmin.json names a known tier.
-2. pmin.json "requires" lists exactly the family libraries go.mod requires
-   directly, so the catalogue tells the truth.
+2. pmin.json "requires" lists exactly the family libraries the code
+   imports, and "testRequires" those only its tests import, so the
+   catalogue tells the truth. Together they are what go.mod requires
+   directly.
 3. Each requirement is allowed for this tier. The rule is that modules
    depend only on the foundation, and programs wire modules together:
      foundation  -> a lower foundation layer only (pmin.json "layer":
                     1 base, 2 sys, 3 kit, 4 tools, 5 contracts)
      engine, function, wrap, frameworks -> foundation only
      program     -> anything but another program
+   Tests may also use engines (testRequires): a module's tests can check
+   it against the real engine a program will plug in, while the module
+   itself stays independent.
    While STRICT is False (the move to this rule), a module that still
    requires another module is reported as a warning and does not fail;
    everything else fails as before.
@@ -51,6 +56,23 @@ OLD = {
 }
 
 
+# TEST_ALLOWED is what a repository's tests alone may require.
+TEST_ALLOWED = {"foundation", "engine"}
+
+
+def code_modules(repo):
+    """The family modules the repository's own code (not its tests) imports."""
+    out = subprocess.run(["go", "list", "-f", "{{range .Imports}}{{.}}\n{{end}}", "./..."], cwd=repo, capture_output=True, text=True)
+    if out.returncode != 0:
+        raise SystemExit("go list ./...: " + out.stderr.strip())
+    mods = set()
+    for imp in out.stdout.split():
+        m = re.match(r"^github\.com/CurtisD4q/(pmin-[a-z]+)(/|$)", imp)
+        if m:
+            mods.add(m.group(1))
+    return mods
+
+
 def go_json(args, cwd):
     out = subprocess.run(["go"] + args, cwd=cwd, capture_output=True, text=True)
     if out.returncode != 0:
@@ -77,14 +99,19 @@ def main():
         if m and not r.get("Indirect"):
             direct[m.group(1)] = r["Path"]
 
-    listed = set(meta.get("requires", []))
-    if listed != set(direct):
-        missing = sorted(set(direct) - listed)
-        extra = sorted(listed - set(direct))
-        if missing:
-            problems.append("pmin.json requires is missing " + ", ".join(missing) + " (go.mod requires them)")
-        if extra:
-            problems.append("pmin.json requires lists " + ", ".join(extra) + " (go.mod does not require them)")
+    own = meta["name"]
+    code = code_modules(repo) - {own}
+    code_direct = {n for n in direct if n in code}
+    test_only = set(direct) - code_direct
+    for key, want in (("requires", code_direct), ("testRequires", test_only)):
+        listed = set(meta.get(key, []))
+        if listed != want:
+            missing = sorted(want - listed)
+            extra = sorted(listed - want)
+            if missing:
+                problems.append(f"pmin.json {key} is missing " + ", ".join(missing))
+            if extra:
+                problems.append(f"pmin.json {key} lists " + ", ".join(extra) + " (not needed there)")
 
     for name, path in sorted(direct.items()):
         info = go_json(["list", "-m", "-json", path], repo)
@@ -94,6 +121,10 @@ def main():
             continue
         dep = json.load(open(dep_meta, encoding="utf-8"))
         dep_tier = dep.get("tier")
+        if name in test_only:
+            if dep_tier not in TEST_ALLOWED:
+                problems.append(f"{meta['name']}'s tests may not require {name} ({dep_tier}): tests use only the foundation and engines")
+            continue
         if dep_tier not in ALLOWED[tier]:
             msg = f"{meta['name']} ({tier}) may not require {name} ({dep_tier}): modules use only the foundation"
             if not STRICT and dep_tier in OLD.get(tier, set()):
@@ -114,7 +145,8 @@ def main():
         for p in problems:
             print("  - " + p)
         sys.exit(1)
-    print(f"Layering check passed: {meta['name']} ({tier}) requires {', '.join(sorted(direct)) or 'nothing from the family'}")
+    extra = f"; its tests also use {', '.join(sorted(test_only))}" if test_only else ""
+    print(f"Layering check passed: {meta['name']} ({tier}) requires {', '.join(sorted(code_direct)) or 'nothing from the family'}{extra}")
 
 
 if __name__ == "__main__":

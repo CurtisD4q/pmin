@@ -13,6 +13,7 @@ Answer these in order; the first "yes" is the place.
 - **Modules use only the foundation.** Function modules, engines, the wrap pipeline and the frameworks import pmin-base, pmin-sys, pmin-kit, pmin-tools and pmin-contracts, and nothing else from the family. They are independent: none depends on another.
 - **When two modules must work together, they agree on a shape in pmin-contracts** (a type, or an interface such as `settings.Parser` or `machines.Book`), each codes against it, and a program plugs the real one in.
 - **The foundation is layered:** 1 pmin-base, 2 pmin-sys, 3 pmin-kit, 4 pmin-tools, 5 pmin-contracts. Each layer uses only the ones below it, and gives its number as `layer` in `pmin.json`.
+- **Tests may also use engines.** A module's tests can check it against the real engine a program will plug in (Quill's tests read real files with pmin-formats). `pmin.json` lists those under `testRequires`; the module's own code still uses only the foundation.
 - **Programs** (`pmin-hub`, `pmin-diskmap`) may use anything but another program: they are where modules are connected.
 - The layering check in CI enforces this. [LAYERING.md](LAYERING.md) lists the modules that have not moved over yet; while it is not empty, those are warnings rather than failures.
 - A module's extension type changes only with care: a breaking change needs the `breaking` label, as `mint-tools/action` does today.
@@ -35,4 +36,4 @@ Answer these in order; the first "yes" is the place.
 }
 ```
 
-`tier` is one of `foundation`, `function`, `engine`, `wrap`, `frameworks`, `program`; a foundation repository also gives its `layer`. Modules other than function modules give a `summary` instead of `function`, `slug`, `group` and `title`. `contributorParts` lists folders meant for people building with the library (templates, examples) rather than for people using it.
+`tier` is one of `foundation`, `function`, `engine`, `wrap`, `frameworks`, `program`; a foundation repository also gives its `layer`. `requires` lists the family modules the code imports, and `testRequires` those only the tests import. Modules other than function modules give a `summary` instead of `function`, `slug`, `group` and `title`. `contributorParts` lists folders meant for people building with the library (templates, examples) rather than for people using it.
