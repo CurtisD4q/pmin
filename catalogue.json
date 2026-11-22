@@ -1,0 +1,403 @@
+[
+  {
+    "name": "cairn",
+    "tier": "example",
+    "summary": "A security program built with pmin (Industry 3); left as it is until it is updated to the blueprint"
+  },
+  {
+    "name": "jobwatch",
+    "tier": "example",
+    "summary": "A backup and job health program built with pmin (Functions 5 and 11); left as it is until it is updated to the blueprint"
+  },
+  {
+    "name": "mint-appkit",
+    "module": "github.com/CurtisD4q/mint-appkit",
+    "tier": "wrap",
+    "summary": "Turns a spec into a form-based interface",
+    "audience": "user",
+    "contributorParts": [
+      "templates/",
+      "CATALOGUE.md",
+      "tools/"
+    ],
+    "requires": [
+      "mint-kit",
+      "mint-spec"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-atlas",
+    "module": "github.com/CurtisD4q/mint-atlas",
+    "tier": "function",
+    "function": 1,
+    "slug": "files",
+    "group": "Work with files and text",
+    "title": "Navigate and manage files. Move, copy, rename, delete, find, and compress files and directories.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-bridge",
+    "module": "github.com/CurtisD4q/mint-bridge",
+    "tier": "function",
+    "function": 12,
+    "slug": "remote",
+    "group": "Reach out and collaborate",
+    "title": "Connect to other machines. Log in to remote servers, clusters, and devices over SSH or serial.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-clock",
+    "tier": "empty",
+    "summary": "Licence only; purpose not decided yet"
+  },
+  {
+    "name": "mint-conduit",
+    "module": "github.com/CurtisD4q/mint-conduit",
+    "tier": "function",
+    "function": 4,
+    "slug": "pipes",
+    "group": "Compose and automate",
+    "title": "Combine tools with pipes and redirection. Chain small commands so the output of one becomes the input of the next.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-courier",
+    "module": "github.com/CurtisD4q/mint-courier",
+    "tier": "function",
+    "function": 13,
+    "slug": "transfer",
+    "group": "Reach out and collaborate",
+    "title": "Transfer and fetch data. Download, upload, and sync files between machines and from the web.",
+    "audience": "user",
+    "requires": [
+      "mint-bridge",
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-depot",
+    "module": "github.com/CurtisD4q/mint-depot",
+    "tier": "function",
+    "function": 9,
+    "slug": "software",
+    "group": "Manage the system",
+    "title": "Install and manage software. Add, update, and remove packages and libraries, and pin versions.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-diskmap",
+    "module": "github.com/CurtisD4q/mint-diskmap",
+    "tier": "program",
+    "summary": "Disk map program, binary mint-dm",
+    "function": 7,
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-scan"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-engine",
+    "module": "github.com/CurtisD4q/mint-engine",
+    "tier": "function",
+    "function": 8,
+    "slug": "services",
+    "group": "Run and build",
+    "title": "Run services and containers. Start servers, databases, and containers, and manage how they run.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-forge",
+    "module": "github.com/CurtisD4q/mint-forge",
+    "tier": "function",
+    "function": 6,
+    "slug": "build",
+    "group": "Run and build",
+    "title": "Write, build, and run code. Compile, test, and debug programs, and run scripts and jobs.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-gen",
+    "module": "github.com/CurtisD4q/mint-gen",
+    "tier": "wrap",
+    "summary": "Generates Go source from a spec",
+    "audience": "user",
+    "requires": [
+      "mint-appkit",
+      "mint-kit",
+      "mint-spec"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-hearth",
+    "module": "github.com/CurtisD4q/mint-hearth",
+    "tier": "function",
+    "function": 15,
+    "slug": "help",
+    "group": "Learn and customize",
+    "title": "Get help and tailor your environment. Use man pages and --help, and set up aliases, prompts, and shell config.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-hub",
+    "module": "github.com/CurtisD4q/mint-hub",
+    "tier": "program",
+    "summary": "One entry point that assembles the function modules",
+    "audience": "user",
+    "requires": [
+      "mint-atlas",
+      "mint-bridge",
+      "mint-conduit",
+      "mint-courier",
+      "mint-depot",
+      "mint-engine",
+      "mint-forge",
+      "mint-hearth",
+      "mint-kit",
+      "mint-ledger",
+      "mint-lens",
+      "mint-lookout",
+      "mint-loom",
+      "mint-pulse",
+      "mint-quill",
+      "mint-tools",
+      "mint-warden",
+      "mint-wrap"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-kit",
+    "module": "github.com/CurtisD4q/mint-kit",
+    "tier": "foundation",
+    "summary": "Screens and widgets for every program",
+    "audience": "user",
+    "contributorParts": [
+      "examples/"
+    ],
+    "requires": [],
+    "status": "v0"
+  },
+  {
+    "name": "mint-ledger",
+    "module": "github.com/CurtisD4q/mint-ledger",
+    "tier": "function",
+    "function": 14,
+    "slug": "git",
+    "group": "Reach out and collaborate",
+    "title": "Track and share code. Version your work and collaborate with Git.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-lens",
+    "module": "github.com/CurtisD4q/mint-lens",
+    "tier": "function",
+    "function": 2,
+    "slug": "read",
+    "group": "Work with files and text",
+    "title": "Search and read text and data. View, filter, and summarize files and logs, from a short config to a multi-gigabyte dataset.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-lookout",
+    "module": "github.com/CurtisD4q/mint-lookout",
+    "tier": "function",
+    "function": 11,
+    "slug": "monitor",
+    "group": "Manage the system",
+    "title": "Monitor and troubleshoot. Read logs, diagnose faults, and test networks and system health.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-loom",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-loom",
+    "module": "github.com/CurtisD4q/mint-loom",
+    "tier": "function",
+    "function": 5,
+    "slug": "automate",
+    "group": "Compose and automate",
+    "title": "Automate with scripts and schedules. Save repeatable work as shell scripts and run it on a timer or trigger.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-pulse",
+    "module": "github.com/CurtisD4q/mint-pulse",
+    "tier": "function",
+    "function": 7,
+    "slug": "processes",
+    "group": "Run and build",
+    "title": "Manage processes and resources. Start, background, pause, and kill programs, and check CPU, memory, and disk use.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-quill",
+    "module": "github.com/CurtisD4q/mint-quill",
+    "tier": "function",
+    "function": 3,
+    "slug": "edit",
+    "group": "Work with files and text",
+    "title": "Edit text and config. Change code, config files, and scripts without leaving the terminal.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-scan",
+    "module": "github.com/CurtisD4q/mint-scan",
+    "tier": "engine",
+    "summary": "Disk engine used by Function 7 and mint-diskmap",
+    "function": 7,
+    "audience": "user",
+    "requires": [],
+    "status": "v0"
+  },
+  {
+    "name": "mint-since",
+    "tier": "empty",
+    "summary": "Licence only; purpose not decided yet"
+  },
+  {
+    "name": "mint-spec",
+    "module": "github.com/CurtisD4q/mint-spec",
+    "tier": "wrap",
+    "summary": "Describes a command-line program as data",
+    "audience": "user",
+    "requires": [
+      "mint-kit"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-strata",
+    "tier": "empty",
+    "summary": "Licence only; purpose not decided yet"
+  },
+  {
+    "name": "mint-tools",
+    "module": "github.com/CurtisD4q/mint-tools",
+    "tier": "foundation",
+    "summary": "Action contract, audit, redaction and shared helpers",
+    "audience": "user",
+    "requires": [
+      "mint-kit"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-warden",
+    "module": "github.com/CurtisD4q/mint-warden",
+    "tier": "function",
+    "function": 10,
+    "slug": "security",
+    "group": "Manage the system",
+    "title": "Manage users, permissions, and security. Control who can access what, and configure firewalls and network settings.",
+    "audience": "user",
+    "requires": [
+      "mint-kit",
+      "mint-tools"
+    ],
+    "status": "v0"
+  },
+  {
+    "name": "mint-wrap",
+    "module": "github.com/CurtisD4q/mint-wrap/v2",
+    "tier": "wrap",
+    "summary": "Opens any command-line program as a form: Store, standalone copies, HandleArgs and the ui screens, used by mint-hub",
+    "audience": "user",
+    "requires": [
+      "mint-gen",
+      "mint-kit",
+      "mint-spec"
+    ],
+    "status": "v2"
+  },
+  {
+    "name": "mint-wrap-legacy",
+    "tier": "legacy",
+    "summary": "Frozen copy of the old single repository; nothing imports it; suggested for archiving"
+  },
+  {
+    "name": "pmin",
+    "tier": "front-door",
+    "summary": "This repository: the catalogue, the matrix and how to contribute"
+  },
+  {
+    "name": "pmin-industries",
+    "tier": "frameworks",
+    "summary": "The 12 industry frameworks, add-ons to the function modules",
+    "status": "planned"
+  },
+  {
+    "name": "susynth",
+    "tier": "sibling",
+    "summary": "A live-coding music instrument; it does not use the pmin libraries"
+  }
+]

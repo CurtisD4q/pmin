@@ -1,0 +1,62 @@
+[
+  {
+    "number": 1,
+    "name": "Cloud Computing/DevOps/IT Infrastructure",
+    "slug": "devops"
+  },
+  {
+    "number": 2,
+    "name": "Software Engineering/Web Development",
+    "slug": "webdev"
+  },
+  {
+    "number": 3,
+    "name": "Cybersecurity/Penetration Testing",
+    "slug": "cyber"
+  },
+  {
+    "number": 4,
+    "name": "Data Science/AI/Machine Learning",
+    "slug": "datasci"
+  },
+  {
+    "number": 5,
+    "name": "Banking/FinTech/Stock Exchanges",
+    "slug": "fintech"
+  },
+  {
+    "number": 6,
+    "name": "Film/Animation/VFX",
+    "slug": "vfx"
+  },
+  {
+    "number": 7,
+    "name": "Scientific Research/Bioinformatics",
+    "slug": "science"
+  },
+  {
+    "number": 8,
+    "name": "Telecommunications/IoT/Embedded Systems",
+    "slug": "telecom"
+  },
+  {
+    "number": 9,
+    "name": "Retail/Logistics/E-Commerce",
+    "slug": "retail"
+  },
+  {
+    "number": 10,
+    "name": "Automotive/Aerospace",
+    "slug": "auto"
+  },
+  {
+    "number": 11,
+    "name": "Healthcare/Medical Imaging",
+    "slug": "health"
+  },
+  {
+    "number": 12,
+    "name": "Energy/Utilities",
+    "slug": "energy"
+  }
+]

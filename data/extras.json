@@ -1,0 +1,48 @@
+[
+  {
+    "name": "pmin",
+    "tier": "front-door",
+    "summary": "This repository: the catalogue, the matrix and how to contribute"
+  },
+  {
+    "name": "pmin-industries",
+    "tier": "frameworks",
+    "summary": "The 12 industry frameworks, add-ons to the function modules",
+    "status": "planned"
+  },
+  {
+    "name": "cairn",
+    "tier": "example",
+    "summary": "A security program built with pmin (Industry 3); left as it is until it is updated to the blueprint"
+  },
+  {
+    "name": "jobwatch",
+    "tier": "example",
+    "summary": "A backup and job health program built with pmin (Functions 5 and 11); left as it is until it is updated to the blueprint"
+  },
+  {
+    "name": "susynth",
+    "tier": "sibling",
+    "summary": "A live-coding music instrument; it does not use the pmin libraries"
+  },
+  {
+    "name": "mint-clock",
+    "tier": "empty",
+    "summary": "Licence only; purpose not decided yet"
+  },
+  {
+    "name": "mint-since",
+    "tier": "empty",
+    "summary": "Licence only; purpose not decided yet"
+  },
+  {
+    "name": "mint-strata",
+    "tier": "empty",
+    "summary": "Licence only; purpose not decided yet"
+  },
+  {
+    "name": "mint-wrap-legacy",
+    "tier": "legacy",
+    "summary": "Frozen copy of the old single repository; nothing imports it; suggested for archiving"
+  }
+]
