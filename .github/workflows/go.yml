@@ -1,0 +1,285 @@
+# The shared CI for every pmin Go repository. A repository's own ci.yml
+# calls it:
+#
+#   jobs:
+#     go:
+#       uses: CurtisD4q/pmin/.github/workflows/go.yml@main
+#       secrets: inherit
+#       with:
+#         go: '["stable", "go.mod"]'   # optional
+#
+# It formats, vets, tests (with the race detector), runs staticcheck and
+# the layering check, and can run more: see the inputs.
+name: go
+
+on:
+  workflow_call:
+    inputs:
+      go:
+        description: 'Go versions, as a JSON list: "stable", "go.mod" (the oldest the module promises) or a version'
+        type: string
+        default: '["stable"]'
+      race:
+        description: Run the tests with the race detector
+        type: boolean
+        default: true
+      staticcheck:
+        type: boolean
+        default: true
+      extra:
+        description: More shell commands, run after the tests on every Go version
+        type: string
+        default: ""
+      extra-stable:
+        description: More shell commands, run only on stable Go (fuzzing, slow checks)
+        type: string
+        default: ""
+      beside:
+        description: Another CurtisD4q repository to check out beside this one, under .beside/<name>
+        type: string
+        default: ""
+      beside-env:
+        description: An environment variable set to the path of the repository checked out beside
+        type: string
+        default: ""
+      apicheck:
+        description: 'On pull requests without the "breaking" label, run scripts/apicheck.sh on these packages ("all" for every package; empty to skip)'
+        type: string
+        default: ""
+      emacs:
+        description: Run the Emacs tests in emacs/
+        type: boolean
+        default: false
+    secrets:
+      MINT_READ_TOKEN:
+        description: A read-only token for the private pmin repositories, so Go can fetch them
+        required: false
+
+permissions:
+  contents: read
+
+env:
+  GOPRIVATE: github.com/CurtisD4q/*
+
+jobs:
+  test:
+    name: test (${{ matrix.go }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ${{ fromJSON(inputs.go) }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # Leave no login behind: git must use MINT_READ_TOKEN for the
+          # other repositories, not this job's token, which reads only this one.
+          persist-credentials: false
+      - uses: actions/setup-go@v7
+        if: matrix.go == 'go.mod'
+        with:
+          go-version-file: go.mod
+      - uses: actions/setup-go@v7
+        if: matrix.go != 'go.mod'
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Let Go read the pmin libraries
+        env:
+          TOKEN: ${{ secrets.MINT_READ_TOKEN }}
+        # tr drops a newline or space pasted along with the secret.
+        run: |
+          token="$(printf %s "$TOKEN" | tr -d '[:space:]')"
+          if [ -n "$token" ]; then
+            git config --global url."https://x-access-token:${token}@github.com/".insteadOf "https://github.com/"
+          fi
+      - uses: actions/checkout@v7
+        if: inputs.beside != ''
+        with:
+          persist-credentials: false
+          repository: CurtisD4q/${{ inputs.beside }}
+          path: .beside/${{ inputs.beside }}
+          token: ${{ secrets.MINT_READ_TOKEN }}
+      - if: inputs.beside != '' && inputs.beside-env != ''
+        run: echo "${{ inputs.beside-env }}=$PWD/.beside/${{ inputs.beside }}" >> "$GITHUB_ENV"
+      - name: gofmt
+        run: test -z "$(gofmt -l $(git ls-files '*.go'))"
+      - run: go vet ./...
+      - run: go test ${{ inputs.race && '-race' || '' }} ./...
+      - name: More checks
+        if: inputs.extra != ''
+        env:
+          EXTRA: ${{ inputs.extra }}
+        run: eval "$EXTRA"
+      - name: More checks on stable Go
+        if: inputs.extra-stable != '' && matrix.go == 'stable'
+        env:
+          EXTRA: ${{ inputs.extra-stable }}
+        run: eval "$EXTRA"
+      - name: Layering check
+        if: matrix.go == 'stable'
+        run: |
+          cat > "$RUNNER_TEMP/check-layering.py" <<'PY'
+          # BEGIN check-layering.py (copied from pmin/scripts by scripts/embed-layering.py)
+          #!/usr/bin/env python3
+          """Check that a repository keeps to the pmin layering rules.
+
+          Run from a repository's root, after its Go modules can be fetched. It reads
+          the repository's pmin.json and go.mod, and the pmin.json of each family
+          library it requires (from the Go module cache, so no other access is
+          needed), then checks:
+
+          1. pmin.json names a known tier.
+          2. pmin.json "requires" lists exactly the family libraries go.mod requires
+             directly, so the catalogue tells the truth.
+          3. Each requirement is allowed for this tier:
+               foundation  -> foundation
+               engine      -> foundation
+               function    -> foundation, engine, function (sibling, as listed)
+               wrap        -> foundation, wrap
+               frameworks  -> foundation, engine, function, wrap
+               program     -> anything but another program
+             No library ever requires a program, and nothing requires frameworks
+             except a program.
+
+          usage: python3 check-layering.py [REPO_DIR]
+          """
+          import json
+          import os
+          import re
+          import subprocess
+          import sys
+
+          FAMILY = re.compile(r"^github\.com/CurtisD4q/(pmin-[a-z]+)(/v\d+)?$")
+          ALLOWED = {
+              "foundation": {"foundation"},
+              "engine": {"foundation"},
+              "function": {"foundation", "engine", "function"},
+              "wrap": {"foundation", "wrap"},
+              "frameworks": {"foundation", "engine", "function", "wrap"},
+              "program": {"foundation", "engine", "function", "wrap", "frameworks"},
+          }
+
+
+          def go_json(args, cwd):
+              out = subprocess.run(["go"] + args, cwd=cwd, capture_output=True, text=True)
+              if out.returncode != 0:
+                  raise SystemExit("go " + " ".join(args) + ": " + out.stderr.strip())
+              return json.loads(out.stdout)
+
+
+          def main():
+              repo = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else ".")
+              problems = []
+              meta_path = os.path.join(repo, "pmin.json")
+              if not os.path.isfile(meta_path):
+                  raise SystemExit("no pmin.json: every pmin repository describes itself in one")
+              meta = json.load(open(meta_path, encoding="utf-8"))
+              tier = meta.get("tier")
+              if tier not in ALLOWED:
+                  raise SystemExit(f"pmin.json: unknown tier {tier!r}; one of {', '.join(sorted(ALLOWED))}")
+
+              mod = go_json(["mod", "edit", "-json"], repo)
+              direct = {}
+              for r in mod.get("Require") or []:
+                  m = FAMILY.match(r["Path"])
+                  if m and not r.get("Indirect"):
+                      direct[m.group(1)] = r["Path"]
+
+              listed = set(meta.get("requires", []))
+              if listed != set(direct):
+                  missing = sorted(set(direct) - listed)
+                  extra = sorted(listed - set(direct))
+                  if missing:
+                      problems.append("pmin.json requires is missing " + ", ".join(missing) + " (go.mod requires them)")
+                  if extra:
+                      problems.append("pmin.json requires lists " + ", ".join(extra) + " (go.mod does not require them)")
+
+              for name, path in sorted(direct.items()):
+                  info = go_json(["list", "-m", "-json", path], repo)
+                  dep_meta = os.path.join(info.get("Dir") or "", "pmin.json")
+                  if not info.get("Dir") or not os.path.isfile(dep_meta):
+                      problems.append(f"{name}: no pmin.json in the required version, so its tier is unknown (update the requirement)")
+                      continue
+                  dep_tier = json.load(open(dep_meta, encoding="utf-8")).get("tier")
+                  if dep_tier not in ALLOWED[tier]:
+                      problems.append(f"{meta['name']} ({tier}) may not require {name} ({dep_tier})")
+
+              if problems:
+                  print("Layering check failed:")
+                  for p in problems:
+                      print("  - " + p)
+                  sys.exit(1)
+              print(f"Layering check passed: {meta['name']} ({tier}) requires {', '.join(sorted(direct)) or 'nothing from the family'}")
+
+
+          if __name__ == "__main__":
+              main()
+          # END check-layering.py
+          PY
+          python3 "$RUNNER_TEMP/check-layering.py" .
+
+  staticcheck:
+    if: inputs.staticcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v7
+        with:
+          go-version: stable
+      - name: Let Go read the pmin libraries
+        env:
+          TOKEN: ${{ secrets.MINT_READ_TOKEN }}
+        run: |
+          token="$(printf %s "$TOKEN" | tr -d '[:space:]')"
+          if [ -n "$token" ]; then
+            git config --global url."https://x-access-token:${token}@github.com/".insteadOf "https://github.com/"
+          fi
+      - run: go run honnef.co/go/tools/cmd/staticcheck@latest ./...
+
+  api:
+    # The public API must not break without the "breaking" label.
+    if: inputs.apicheck != '' && github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'breaking')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-go@v7
+        with:
+          go-version: stable
+      - name: Let Go read the pmin libraries
+        env:
+          TOKEN: ${{ secrets.MINT_READ_TOKEN }}
+        run: |
+          token="$(printf %s "$TOKEN" | tr -d '[:space:]')"
+          if [ -n "$token" ]; then
+            git config --global url."https://x-access-token:${token}@github.com/".insteadOf "https://github.com/"
+          fi
+      - run: go install golang.org/x/exp/cmd/apidiff@latest
+      - name: apicheck
+        env:
+          PACKAGES: ${{ inputs.apicheck }}
+        run: |
+          if [ "$PACKAGES" = all ]; then
+            scripts/apicheck.sh "origin/${{ github.base_ref }}"
+          else
+            scripts/apicheck.sh "origin/${{ github.base_ref }}" $PACKAGES
+          fi
+
+  emacs:
+    if: inputs.emacs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v7
+        with:
+          go-version: stable
+      - name: Install Emacs
+        run: sudo apt-get update && sudo apt-get install -y emacs-nox
+      - name: ERT
+        run: emacs -Q --batch -L emacs -l emacs/mint-tests.el -f ert-run-tests-batch-and-exit

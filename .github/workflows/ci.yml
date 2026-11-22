@@ -1,0 +1,31 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: The shared workflow carries the current layering check
+        run: python3 scripts/embed-layering.py --check
+      - name: The 15 functions and 12 industries are all there
+        run: |
+          python3 - <<'PY'
+          import json
+          f = json.load(open("data/functions.json"))
+          i = json.load(open("data/industries.json"))
+          assert [x["number"] for x in f] == list(range(1, 16)), "functions"
+          assert [x["number"] for x in i] == list(range(1, 13)), "industries"
+          print("15 functions, 12 industries")
+          PY
+      - name: Scripts compile
+        run: python3 -m py_compile scripts/*.py
