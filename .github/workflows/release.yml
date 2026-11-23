@@ -1,0 +1,89 @@
+# The shared release for every pmin program. A program's own release.yml
+# (made from templates/program/release.yml) calls it when a tag such as
+# v1.0.0 is pushed:
+#
+#   jobs:
+#     release:
+#       uses: CurtisD4q/pmin/.github/workflows/release.yml@main
+#       with:
+#         name: jobwatch
+#         files: jobwatch.el
+#       secrets: inherit
+#
+# It checks the program, builds an archive per target with the program's
+# scripts/dist.sh (a copy of templates/program/dist.sh), records how they
+# were built, and publishes them with SHA256SUMS as the tag's release.
+# install.sh downloads from that release. Only the repository's owner can
+# push a tag, so the read token is never given to someone else's code.
+name: release
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        description: The command's name; it is built from ./cmd/<name>
+        type: string
+        required: true
+      files:
+        description: Files to ship at the top of each archive besides README.md and LICENSE (space-separated)
+        type: string
+        default: ""
+      targets:
+        description: GOOS/GOARCH pairs (space-separated); empty for Linux and macOS on amd64 and arm64
+        type: string
+        default: ""
+    secrets:
+      MINT_READ_TOKEN:
+        description: A read-only token for the private pmin repositories, so Go can fetch them
+        required: false
+
+permissions:
+  contents: write     # create the release and upload its files
+  id-token: write     # sign the build attestation
+  attestations: write # store it
+
+env:
+  GOPRIVATE: github.com/CurtisD4q/*
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+      - name: Let Go read the pmin libraries
+        env:
+          TOKEN: ${{ secrets.MINT_READ_TOKEN }}
+        run: |
+          token="$(printf %s "$TOKEN" | tr -d '[:space:]')"
+          if [ -n "$token" ]; then
+            git config --global url."https://x-access-token:${token}@github.com/".insteadOf "https://github.com/"
+          fi
+      - name: Check before building
+        run: |
+          test -z "$(git ls-files '*.go' | grep -v '^vendor/' | xargs gofmt -l)"
+          go vet ./...
+          go test ./...
+      - name: Build the archives
+        env:
+          NAME: ${{ inputs.name }}
+          FILES: ${{ inputs.files }}
+          TARGETS: ${{ inputs.targets }}
+        run: |
+          [ -n "$TARGETS" ] || unset TARGETS
+          VERSION="${GITHUB_REF_NAME#v}" sh scripts/dist.sh
+      - name: Attest how they were built
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: dist/*.tar.gz
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NAME: ${{ inputs.name }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/*.tar.gz dist/SHA256SUMS \
+            --title "$NAME ${GITHUB_REF_NAME#v}" --generate-notes --verify-tag

@@ -89,6 +89,18 @@ pmin-scan, the disk engine under Function 7, takes a framework's known places as
 
 Slugs are short codes for folder names and ids (a cell is written `health.lookout`); the names above are the industries.
 
+## Making a program easy to install
+
+Every program built on pmin installs the same way: one command downloads its latest release, checks it, and runs `prog install`, which puts the program in `~/.local/bin` (or `/usr/local` with `--system`). The download or clone can then be deleted, and `prog uninstall` takes it off again. The pieces:
+
+| Piece | Where | Does |
+|---|---|---|
+| `selfinstall` | [pmin-base](https://github.com/CurtisD4q/pmin-base) | `prog install` and `prog uninstall`, one line in `main` |
+| `dist.sh`, `install.sh`, `Makefile`, `release.yml`, README section | `templates/program/` | build the archives; download, check and install; `make install`; a tag publishes a release |
+| shared release | `.github/workflows/release.yml` | what a program's release.yml calls |
+| `scripts/new-program.py DIR --name NAME` | here | starts a new program with all of the above, or adds what an existing one lacks |
+| `scripts/check-program.py DIR...` | here | fails if a program is missing any of it |
+
 ## Built with pmin
 
 `cairn` (security work) and `jobwatch` (backup and job health) are programs made with these libraries. They are left as they are for now and will be brought up to date with this layout later.
