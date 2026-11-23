@@ -548,7 +548,13 @@
   },
   {
     "name": "susynth",
-    "tier": "sibling",
-    "summary": "A live-coding music instrument; it does not use the pmin libraries"
+    "module": "github.com/susynth/susynth",
+    "tier": "example",
+    "summary": "A live-coding music instrument for the terminal, built with pmin's foundation helpers",
+    "audience": "user",
+    "requires": [
+      "pmin-base"
+    ],
+    "status": "v0"
   }
 ]

@@ -88,14 +88,7 @@ Programs made with these libraries. They are left as they are for now.
 | --- | --- | --- |
 | cairn | A security program built with pmin (Industry 3); left as it is until it is updated to the blueprint | - |
 | jobwatch | A backup and job health program built with pmin (Functions 5 and 11); left as it is until it is updated to the blueprint | - |
-
-## Siblings
-
-Related projects that do not use the libraries.
-
-| Repository | What it is | Requires |
-| --- | --- | --- |
-| susynth | A live-coding music instrument; it does not use the pmin libraries | - |
+| susynth | A live-coding music instrument for the terminal, built with pmin's foundation helpers | pmin-base |
 
 ## Not started
 
