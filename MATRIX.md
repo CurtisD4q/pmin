@@ -8,7 +8,7 @@ Industries: **devops** = 1. Cloud Computing/DevOps/IT Infrastructure; **webdev**
 
 | # | Module | devops | webdev | cyber | datasci | fintech | vfx | science | telecom | retail | auto | health | energy |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | pmin-atlas | ● |   |   | ● | ● | ● | ● |   |   | ● | ● |   |
+| 1 | pmin-atlas | ● |   |   | ● | ● | ● | ● |   | ● | ● | ● |   |
 | 2 | pmin-lens | ● | ● | ● | ● | ● |   | ● | ● | ● |   |   |   |
 | 3 | pmin-quill | ● |   |   |   |   |   |   |   |   |   |   |   |
 | 4 | pmin-conduit | ● | ● | ● |   |   |   | ● |   |   |   |   |   |
@@ -16,12 +16,12 @@ Industries: **devops** = 1. Cloud Computing/DevOps/IT Infrastructure; **webdev**
 | 6 | pmin-forge | ● | ● |   | ● |   |   |   | ● |   |   |   |   |
 | 7 | pmin-pulse | ● |   | ● | ● | ● | ● | ● | ● | ● |   |   | ● |
 | 8 | pmin-engine | ● | ● |   | ● |   |   | ● |   |   |   |   |   |
-| 9 | pmin-depot | ● |   | ● | ● |   |   | ● |   |   |   |   |   |
+| 9 | pmin-depot | ● |   | ● | ● |   |   | ● |   | ● |   |   |   |
 | 10 | pmin-warden |   |   |   |   |   |   |   |   |   |   |   |   |
-| 11 | pmin-lookout | ● | ● | ● | ● | ● |   | ● | ● |   |   | ● | ● |
+| 11 | pmin-lookout | ● | ● | ● | ● | ● |   | ● | ● | ● |   | ● | ● |
 | 12 | pmin-bridge |   |   |   |   |   |   |   | ● |   | ● |   | ● |
-| 13 | pmin-courier | ● |   |   | ● | ● |   | ● |   |   |   |   |   |
+| 13 | pmin-courier | ● |   |   | ● | ● |   | ● |   | ● |   |   |   |
 | 14 | pmin-ledger | ● | ● |   |   | ● |   |   |   |   |   |   |   |
 | 15 | pmin-hearth |   |   |   |   |   |   |   |   |   |   |   |   |
 
-Cells with content: 64 of 180.
+Cells with content: 68 of 180.
