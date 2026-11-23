@@ -316,13 +316,15 @@
       "pmin-engine",
       "pmin-forge",
       "pmin-formats",
+      "pmin-hearth",
       "pmin-ledger",
       "pmin-lens",
       "pmin-lookout",
       "pmin-loom",
       "pmin-pulse",
       "pmin-quill",
-      "pmin-scan"
+      "pmin-scan",
+      "pmin-warden"
     ],
     "status": "v0"
   },
