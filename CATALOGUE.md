@@ -82,12 +82,12 @@ Assemble the modules into something to run.
 
 ## Built with pmin
 
-Programs made with these libraries. They are left as they are for now.
+Programs made with these libraries. Each uses modules, engines and the foundation, wires its own engines, and depends on no other program.
 
 | Repository | What it is | Requires |
 | --- | --- | --- |
-| cairn | A security program built with pmin (Industry 3); left as it is until it is updated to the blueprint | - |
-| jobwatch | A backup and job health program built with pmin (Functions 5 and 11); left as it is until it is updated to the blueprint | - |
+| cairn | A security workbench built with pmin: cases, scope, tools, intrusion checks and hardening | pmin-base, pmin-bridge, pmin-conduit, pmin-kit, pmin-lookout, pmin-netfilter, pmin-serial, pmin-tools, pmin-warden, pmin-wrap |
+| jobwatch | A backup and job health program built with pmin: Loom keeps the jobs, pmin-jobhealth judges them | pmin-jobhealth, pmin-kit, pmin-loom, pmin-tools |
 | susynth | A live-coding music instrument for the terminal, built with pmin's foundation helpers | pmin-base |
 
 ## Not started

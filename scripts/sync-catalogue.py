@@ -28,7 +28,7 @@ TIERS = [
     ("frameworks", "Industry frameworks", "Add-ons to the function modules: specifications, conditions, contexts, rules and variables for each industry."),
     ("program", "Programs", "Assemble the modules into something to run."),
     ("front-door", "Front door", ""),
-    ("example", "Built with pmin", "Programs made with these libraries. They are left as they are for now."),
+    ("example", "Built with pmin", "Programs made with these libraries. Each uses modules, engines and the foundation, wires its own engines, and depends on no other program."),
     ("sibling", "Siblings", "Related projects that do not use the libraries."),
     ("empty", "Not started", ""),
     ("legacy", "Legacy", ""),

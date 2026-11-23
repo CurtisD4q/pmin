@@ -1,13 +1,37 @@
 [
   {
     "name": "cairn",
+    "module": "github.com/CurtisD4q/cairn",
     "tier": "example",
-    "summary": "A security program built with pmin (Industry 3); left as it is until it is updated to the blueprint"
+    "summary": "A security workbench built with pmin: cases, scope, tools, intrusion checks and hardening",
+    "audience": "user",
+    "requires": [
+      "pmin-base",
+      "pmin-bridge",
+      "pmin-conduit",
+      "pmin-kit",
+      "pmin-lookout",
+      "pmin-netfilter",
+      "pmin-serial",
+      "pmin-tools",
+      "pmin-warden",
+      "pmin-wrap"
+    ],
+    "status": "v0"
   },
   {
     "name": "jobwatch",
+    "module": "github.com/CurtisD4q/jobwatch",
     "tier": "example",
-    "summary": "A backup and job health program built with pmin (Functions 5 and 11); left as it is until it is updated to the blueprint"
+    "summary": "A backup and job health program built with pmin: Loom keeps the jobs, pmin-jobhealth judges them",
+    "audience": "user",
+    "requires": [
+      "pmin-jobhealth",
+      "pmin-kit",
+      "pmin-loom",
+      "pmin-tools"
+    ],
+    "status": "v0"
   },
   {
     "name": "mint-wrap-legacy",

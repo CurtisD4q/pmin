@@ -11,16 +11,6 @@
     "status": "planned"
   },
   {
-    "name": "cairn",
-    "tier": "example",
-    "summary": "A security program built with pmin (Industry 3); left as it is until it is updated to the blueprint"
-  },
-  {
-    "name": "jobwatch",
-    "tier": "example",
-    "summary": "A backup and job health program built with pmin (Functions 5 and 11); left as it is until it is updated to the blueprint"
-  },
-  {
     "name": "pmin-clock",
     "tier": "empty",
     "summary": "Licence only; purpose not decided yet"
