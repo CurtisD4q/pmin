@@ -22,6 +22,6 @@ Industries: **devops** = 1. Cloud Computing/DevOps/IT Infrastructure; **webdev**
 | 12 | pmin-bridge | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● |
 | 13 | pmin-courier | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● |
 | 14 | pmin-ledger | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● |
-| 15 | pmin-hearth |   |   | ● |   | ● | ● | ● |   |   | ● | ● | ● |
+| 15 | pmin-hearth | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● | ● |
 
-Cells with content: 175 of 180.
+Cells with content: 180 of 180.
