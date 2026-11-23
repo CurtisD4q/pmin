@@ -122,7 +122,9 @@ def main():
                 problems.append(f"pmin.json {key} lists " + ", ".join(extra) + " (not needed there)")
 
     for name, path in sorted(direct.items()):
-        info = go_json(["list", "-m", "-json", path], repo)
+        # -mod=mod: a repository that vendors its modules has no module
+        # folder to read in vendor mode, so look the module up in the cache.
+        info = go_json(["list", "-mod=mod", "-m", "-json", path], repo)
         dep_meta = os.path.join(info.get("Dir") or "", "pmin.json")
         if not info.get("Dir") or not os.path.isfile(dep_meta):
             problems.append(f"{name}: no pmin.json in the required version, so its tier is unknown (update the requirement)")
