@@ -311,11 +311,17 @@
       "pmin-atlas",
       "pmin-bridge",
       "pmin-conduit",
+      "pmin-courier",
+      "pmin-depot",
       "pmin-engine",
       "pmin-forge",
+      "pmin-formats",
+      "pmin-ledger",
       "pmin-lens",
       "pmin-lookout",
       "pmin-loom",
+      "pmin-pulse",
+      "pmin-quill",
       "pmin-scan"
     ],
     "status": "v0"
