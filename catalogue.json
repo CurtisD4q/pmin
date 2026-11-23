@@ -308,9 +308,14 @@
       "pmin-tools"
     ],
     "testRequires": [
+      "pmin-atlas",
+      "pmin-bridge",
       "pmin-conduit",
+      "pmin-engine",
       "pmin-forge",
+      "pmin-lens",
       "pmin-lookout",
+      "pmin-loom",
       "pmin-scan"
     ],
     "status": "v0"
