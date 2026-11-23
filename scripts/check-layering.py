@@ -125,6 +125,9 @@ def main():
         # -mod=mod: a repository that vendors its modules has no module
         # folder to read in vendor mode, so look the module up in the cache.
         info = go_json(["list", "-mod=mod", "-m", "-json", path], repo)
+        if not info.get("Dir") and info.get("Version"):
+            # Not in the module cache yet (a vendored build never fetched it).
+            info = go_json(["mod", "download", "-json", path + "@" + info["Version"]], repo)
         dep_meta = os.path.join(info.get("Dir") or "", "pmin.json")
         if not info.get("Dir") or not os.path.isfile(dep_meta):
             problems.append(f"{name}: no pmin.json in the required version, so its tier is unknown (update the requirement)")
